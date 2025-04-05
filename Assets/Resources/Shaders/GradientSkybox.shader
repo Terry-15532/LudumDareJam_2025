@@ -41,11 +41,11 @@ Shader "Custom/GradientSkybox"{
 
 			float3 frag(v2f i) : SV_Target{
 				// float t = sin(_Time * _Speed) * 0.5 + 0.5;
-				float3 sun = _MainLightColor * pow(saturate(dot(_MainLightPosition, normalize(i.worldPos))), 10000) * 3 * _Color2 /
-					Brightness(_Color2);
+				//float3 sun = _MainLightColor * pow(saturate(dot(_MainLightPosition, normalize(i.worldPos))), 5000) /
+				//	Brightness(_Color2);
 				// sun += pow(saturate(dot(_MainLightPosition, normalize(i.worldPos))), 10) * 0.1;
 				float3 col = lerp(_Color2, _Color1, Posterize(saturate(i.uv.y + 0.5) + _Width, 1, _Hardness));
-				col = Overlay(col, sun, sun);
+				// col = Overlay(col, sun, sun/50000);
 				return col;
 			}
 			ENDHLSL

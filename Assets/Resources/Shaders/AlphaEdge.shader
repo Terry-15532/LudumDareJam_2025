@@ -11,7 +11,7 @@ Shader "Custom/AlphaEdge"{
             "Queue"="Transparent"
         }
         LOD 200
-        ZWrite off
+        ZWrite on
         Cull off
         Blend SrcAlpha OneMinusSrcAlpha
 
@@ -59,7 +59,7 @@ Shader "Custom/AlphaEdge"{
                 };
                 for (int j = 0; j < 8; j++){
                     float4 neighborPixel = tex2D(_MainTex, i.uv + offsets[j] * _MainTex_TexelSize.xy);
-                    if (abs(neighborPixel.a - alpha) > _Threshold || abs(i.uv.x - 0.5) < 0.01){
+                    if (abs(neighborPixel.a - alpha) > _Threshold){
                         return _EdgeColor * _Emission;
                     }
                 }
