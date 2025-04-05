@@ -7,22 +7,27 @@ public class RingPulse : MonoBehaviour
     public float maxRadius = 100f;
     public float minRadius = 50f;
     public float shrinkSpeed = 50f;
+    private bool deactivated = false;
 
     void Update()
     {
-        if (ring.Radius > minRadius)
+        if (ring.Radius > minRadius && !deactivated)
         {
             ring.Radius -= shrinkSpeed * Time.deltaTime;
         }
-        else
+        else if (!deactivated)
         {
             controller.BeatHit();
-            if (controller.pulseLeft > 0)
+            if (controller.pulseLeft > 2)
             {
                 controller.pulseLeft--;
+                Debug.Log(controller.pulseLeft);
                 ring.Radius = maxRadius;
             }
-            
+            else
+            {
+                deactivated = true;
+            }
         }
     }
 }

@@ -34,18 +34,20 @@ public class Food : MonoBehaviour{
     public float flashInterval = 0.5f;
 
     public static event Action<Food> OnCollisionEvent;
+    private QTEController qte;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         icon = GetComponentInChildren<SpriteRenderer>();
         icon.sprite = ResourceManager.Load<Sprite>("Resources/Sprites/FoodIcons" + category.ToString());
+        qte = FindFirstObjectByType<QTEController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (controlling)
+        if (controlling && !qte.getQTEStarted())
         {
             Vector3 move = Vector3.zero;
 
@@ -75,7 +77,7 @@ public class Food : MonoBehaviour{
                 OnReachCamera();
             }
         }
-        if (isWandering)
+        if (isWandering && !qte.getQTEStarted())
         {
             currentVelocity = Vector3.Lerp(currentVelocity, targetDirection * maxWanderSpeed, Time.deltaTime / transitionDuration);
             transform.position += currentVelocity * Time.deltaTime;
@@ -103,6 +105,10 @@ public class Food : MonoBehaviour{
             Debug.Log("Collided with " + other.tag);
             OnReachObstacle();
             OnCollisionEvent?.Invoke(this);
+        }
+        if (other.CompareTag("Layer"))
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = other.GetComponent<Layer>().orderInLayer + 1;
         }
     }
 
