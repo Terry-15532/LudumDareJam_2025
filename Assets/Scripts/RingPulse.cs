@@ -18,10 +18,9 @@ public class RingPulse : MonoBehaviour
         else if (!deactivated)
         {
             controller.BeatHit();
-            if (controller.pulseLeft > 2)
+            if (controller.pulseLeft > 1)
             {
-                controller.pulseLeft--;
-                Debug.Log(controller.pulseLeft);
+                //Debug.Log(controller.pulseLeft);
                 ring.Radius = maxRadius;
             }
             else
