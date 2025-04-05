@@ -353,6 +353,11 @@ Shader "Custom/BasicAnime"{
 
 				//Calculate Basic Color
 				float3 col = _Color;
+				
+				// texColor.rgb = ApplyPosterizeHSV(texColor.rgb + _DiffuseOffset/10, _DiffuseSteps, _DiffuseHardness);
+				//
+				// return  texColor;
+
 
 				col = Overlay(col, texColor.xyz * col, texColor.a);
 
@@ -382,7 +387,7 @@ Shader "Custom/BasicAnime"{
                 specular.a *= smoothstep(_SpecularThreshold - _SpecularHardness, _SpecularThreshold + _SpecularHardness, pow(1 - (1 + dot(reflect(viewDir, i.smoothedNormal), lightDir)) / 2 + _SpecularOffset, _SpecularRange));
 				#else
 				specular.a *= smoothstep(_SpecularThreshold - _SpecularHardness, _SpecularThreshold + _SpecularHardness,
-										pow(1 - (1 + dot(reflect(viewDir, i.normal), lightDir)) / 2 + _SpecularOffset, _SpecularRange));
+									pow(1 - (1 + dot(reflect(viewDir, i.normal), lightDir)) / 2 + _SpecularOffset, _SpecularRange));
 				#endif
 				col = Overlay(col, specular.rgba, specular.a * (1 - shadow));
 				#endif
