@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Food : MonoBehaviour
 {
-    private bool isMoving = false;
     private bool isWandering = false;
     private bool controlling = false;
     public float moveUpDistance = 5f;
@@ -25,6 +25,7 @@ public class Food : MonoBehaviour
     public int flashCount = 3;
     public float flashInterval = 0.5f;
 
+    public static event Action<Food> OnCollisionEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -75,7 +76,6 @@ public class Food : MonoBehaviour
     public void OnClick()
     {
         StartCoroutine(MoveUpSmoothly());
-        controlling = true;
     }
 
     void OnReachCamera()
@@ -93,6 +93,7 @@ public class Food : MonoBehaviour
         {
             Debug.Log("Collided with " + other.tag);
             OnReachObstacle();
+            OnCollisionEvent?.Invoke(this);
         }
     }
 
@@ -105,8 +106,6 @@ public class Food : MonoBehaviour
 
     IEnumerator MoveUpSmoothly()
     {
-        isMoving = true;
-
         Vector3 targetPos = transform.position + Vector3.up * moveUpDistance;
         Vector3 velocity = Vector3.zero;
 
@@ -118,9 +117,10 @@ public class Food : MonoBehaviour
         }
 
         transform.position = targetPos;
-        isMoving = false;
 
+        controlling = true;
         isWandering = true;
+        
         StartCoroutine(ChangeDirectionRoutine());
     }
 
@@ -130,7 +130,7 @@ public class Food : MonoBehaviour
         while (isWandering)
         {
             // Pick a new random direction on XY plane
-            float angle = Random.Range(0f, 360f);
+            float angle = UnityEngine.Random.Range(0f, 360f);
             targetDirection = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f).normalized;
 
             yield return new WaitForSeconds(directionChangeInterval);
