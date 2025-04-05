@@ -3,8 +3,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Food : MonoBehaviour
-{
+public enum FoodCategory{
+    Lemon, Mango, Egg, Banana, Milk, Cola, Pepsi, Soda, Salad, Cheese, Sandwich
+}
+
+public class Food : MonoBehaviour{
+    [Header("食物种类")] public FoodCategory category;
+    [Space]
+    public SpriteRenderer icon; 
+    
+    
     private bool isWandering = false;
     private bool controlling = false;
     public float moveUpDistance = 5f;
@@ -30,7 +38,8 @@ public class Food : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        icon = GetComponentInChildren<SpriteRenderer>();
+        icon.sprite = ResourceManager.Load<Sprite>("Resources/Sprites/FoodIcons" + category.ToString());
     }
 
     // Update is called once per frame
@@ -49,12 +58,12 @@ public class Food : MonoBehaviour
             if (Input.GetKey(KeyCode.D))
                 move += Vector3.right;
 
-            move = move.normalized * moveSpeed * Time.deltaTime;
+            move = move.normalized * (moveSpeed * Time.deltaTime);
 
             if (Input.GetKey(KeyCode.Space))
             {
                 Vector3 toCamera = (Camera.main.transform.position - transform.position).normalized;
-                move += toCamera * zMoveSpeed * Time.deltaTime;
+                move += toCamera * (zMoveSpeed * Time.deltaTime);
             }
 
             transform.position += move;

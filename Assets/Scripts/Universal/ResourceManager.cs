@@ -17,6 +17,18 @@ public static class ResourceManager{
 			return r;
 		}
 	}
+	
+	public static T LoadPrefab<T>() where T : Object{
+		string path = "Resource/Prefabs" + typeof(T).Name;
+		if (resources.TryGetValue(path, out object resource)){
+			return (T)resource;
+		}
+		else{
+			var r = Resources.Load<T>(path);
+			resources.Add(path, r);
+			return r;
+		}
+	}
 
 	public static void Preload(){
 		foreach (string path in preloadedResources){

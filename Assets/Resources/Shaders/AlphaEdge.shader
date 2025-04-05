@@ -12,6 +12,7 @@ Shader "Custom/AlphaEdge"{
         }
         LOD 200
         ZWrite on
+        ZTest LEqual
         Cull off
         Blend SrcAlpha OneMinusSrcAlpha
 
