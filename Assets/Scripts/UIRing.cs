@@ -43,4 +43,9 @@ public class UIRing : MaskableGraphic
             vh.AddTriangle(index + 2, index + 3, index);
         }
     }
+
+    public void setRadius(float newRadius)
+    {
+        radius = newRadius;
+    }
 }

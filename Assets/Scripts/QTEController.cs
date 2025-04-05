@@ -8,40 +8,69 @@ public class QTEController : MonoBehaviour
     public int successPulses;
     public int pulseLeft;
     private int currentSuccess;
+    private bool started = false;
+    public UIRing ring1;
+    public UIRing ring2;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void startQTE()
     {
+        transform.GetChild(0).gameObject.SetActive(true);
+        ring1.setRadius(500);
+        ring2.setRadius(1000);
         pulseLeft = maxPulses;
+        currentSuccess = 0;
+        started = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (started)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (gracePeriod > 0)
+                { BeatSuccess(); }
+                else
+                { gracePeriod = maxGrace; }
+            }
+            if (gracePeriod > 0)
+            {
+                gracePeriod--;
+            }
+            if (pulseLeft == 0 && gracePeriod == 0)
+            {
+                started = false;
+                FindFirstObjectByType<AlertnessBar>().GameOver();
+            }
+        }
+    }
+
+    public void BeatHit()
+    {
+        if (started)
         {
             if (gracePeriod > 0)
             { BeatSuccess(); }
             else
             { gracePeriod = maxGrace; }
         }
-        if (gracePeriod > 0)
-        {
-            gracePeriod--;
-        }
-    }
-
-    public void BeatHit()
-    {
-        if (gracePeriod > 0)
-        { BeatSuccess(); }
-        else
-        { gracePeriod = maxGrace; }
     }
 
     void BeatSuccess()
     {
+        Debug.Log("success");
         currentSuccess++;
-        Debug.Log(currentSuccess);
+        if (currentSuccess >= 3)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            started = false;
+            FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
+        }
+    }
+
+    public bool getQTEStarted()
+    {
+        return started;
     }
 }
