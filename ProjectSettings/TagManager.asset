@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ClickableSprite
   - Obstacle
+  - Layer
   layers:
   - Default
   - TransparentFX
