@@ -474,8 +474,8 @@ MonoBehaviour:
   flashInterval: 0.5
   mode: 1
   targetZ: 0
-  noiseAmplitude: 0.2
-  noiseFrequency: 1
+  noiseAmplitude: 0
+  noiseFrequency: 0
 --- !u!54 &175344194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1002,8 +1002,8 @@ MonoBehaviour:
   flashInterval: 0.5
   mode: 1
   targetZ: 0
-  noiseAmplitude: 0.2
-  noiseFrequency: 1
+  noiseAmplitude: 0
+  noiseFrequency: 0
 --- !u!54 &471840681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1158,8 +1158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 0.1
-  minX: -0.5
-  maxX: 0.5
+  minX: 4.967
+  maxX: 6.555
   smoothing: 5
 --- !u!114 &533093953
 MonoBehaviour:
@@ -1421,6 +1421,7 @@ MonoBehaviour:
   ring1: {fileID: 656299131}
   ring2: {fileID: 1881735346}
   textboxAnimator: {fileID: 158196627}
+  fade: {fileID: 1179881077}
 --- !u!224 &566908438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1524,7 +1525,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3ee77ca6857b79f4580d7ce71cfb63ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 9598d5639c6a8f946be89e66e3f8aea4, type: 2}
     - target: {fileID: -7511558181221131132, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -2668,8 +2669,8 @@ MonoBehaviour:
   flashInterval: 0.5
   mode: 1
   targetZ: 0
-  noiseAmplitude: 0.2
-  noiseFrequency: 1
+  noiseAmplitude: 0
+  noiseFrequency: 0
 --- !u!54 &1026936622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3019,8 +3020,8 @@ MonoBehaviour:
   flashInterval: 0.5
   mode: 1
   targetZ: 0
-  noiseAmplitude: 0.2
-  noiseFrequency: 1
+  noiseAmplitude: 0
+  noiseFrequency: 0
 --- !u!54 &1092424383
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3908,7 +3909,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -850, y: -100}
-  m_SizeDelta: {x: 300, y: 450}
+  m_SizeDelta: {x: 298.9017, y: 458.4211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1522127435
 MonoBehaviour:
