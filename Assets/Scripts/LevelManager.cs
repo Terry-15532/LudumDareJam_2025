@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour{
 
 	[Header("场景物体")] public NoteMenu noteMenu;
 	public QTEController qteController;
+	private Sound BGM;
 
 	public void Awake(){
 		instance = this;
@@ -26,7 +27,9 @@ public class LevelManager : MonoBehaviour{
 
 	public void Start(){
 		InitNoteMenu();
-	}
+
+        BGM = SoundSys.PlaySound("BGM", true);
+    }
 
 	public void InitNoteMenu(){
 		noteMenu.inOrder = inOrder;
@@ -58,5 +61,20 @@ public class LevelManager : MonoBehaviour{
 
 	public void RestartScene(){
 		SceneSwitching.SwitchTo(currLevel.ToString());
+	}
+
+	public void PauseBGM()
+	{
+		BGM.audioSource.Pause();
+	}
+
+	public void ResumeBGM()
+	{
+		BGM.audioSource.Play();
+	}
+
+	public void StopBGM()
+	{
+		Destroy(BGM);
 	}
 }

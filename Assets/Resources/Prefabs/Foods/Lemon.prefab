@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 3426008005575950985}
   - component: {fileID: 8139314625581223106}
   - component: {fileID: 6814275910277878023}
+  - component: {fileID: 1475048004487099397}
+  - component: {fileID: 2534886669537084070}
+  - component: {fileID: 3333993477820711481}
   m_Layer: 0
   m_Name: Lemon
   m_TagString: ClickableSprite
@@ -110,8 +113,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.9621527, y: 3.0036414, z: 0.12862748}
-  m_Center: {x: -0.08247712, y: -0.24824497, z: 0.027257629}
+  m_Size: {x: 2.1022775, y: 1.7947284, z: 0.12862748}
+  m_Center: {x: -0.9770185, y: -0.69898975, z: 0.027257632}
 --- !u!54 &8139314625581223106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,6 +168,74 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  mode: 0
+  maxMouseSpeed: 5
+  mouseAcceleration: 10
+  stopThreshold: 0.05
+  maxWanderDistance: 1
+--- !u!65 &1475048004487099397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999975400759609755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2667109, y: 1.0886517, z: 0.2}
+  m_Center: {x: -0.77617884, y: 0.5948662, z: 0}
+--- !u!65 &2534886669537084070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999975400759609755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1654721, y: 2.5982497, z: 0.2}
+  m_Center: {x: 0.34356648, y: -0.25728363, z: 0}
+--- !u!65 &3333993477820711481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999975400759609755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.81322324, y: 1.8389622, z: 0.2}
+  m_Center: {x: 1.296489, y: -0.3162108, z: 0}
 --- !u!1 &7782221444736065394
 GameObject:
   m_ObjectHideFlags: 0
