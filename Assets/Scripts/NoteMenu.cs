@@ -107,7 +107,7 @@ public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandl
 		if (!inOrder){
 			int i = 0;
 			foreach (var item in itemList){
-				item.SetPositionAni(new Vector2(item.position.x, -10 - 80 * i), 0.3f);
+				item.SetPositionAni(new Vector2(item.position.x, -70 - 80 * i), 0.3f);
 				i++;
 			}
 		}
