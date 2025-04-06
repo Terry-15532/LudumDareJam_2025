@@ -21,6 +21,13 @@ public enum FoodCategory{
 	DonutPink = 14
 }
 
+public enum MovementMode
+{
+    Keyboard,
+    MouseVelocity,
+    MousePosition
+}
+
 public class Food : MonoBehaviour{
 	[Header("食物种类")] public FoodCategory category;
 	[Space] public SpriteRenderer icon;
@@ -72,48 +79,143 @@ public class Food : MonoBehaviour{
 	private QTEController qte;
 	private SpriteRenderer sr;
 
-	void Start(){
-		icon = GetComponentInChildren<SpriteRenderer>();
+	[SerializeField] private MovementMode mode;
+    public float maxMouseSpeed = 5f;
+    public float mouseAcceleration = 10f;
+
+    private Vector3 velocity;
+	private Camera mainCamera;
+
+    private Vector3 virtualPoint;
+    private Vector3 virtualVelocity;
+    public float stopThreshold = 0.05f; // Distance to mouse before stopping
+	public float maxWanderDistance = 1;
+	private Vector3 wanderPosition;
+
+    void Start(){
+        mainCamera = Camera.main;
+        icon = GetComponentInChildren<SpriteRenderer>();
 		icon.sprite = ResourceManager.Load<Sprite>("Sprites/FoodIcons/" + category.ToString());
 		qte = LevelManager.instance.qteController;
 		sr = GetComponent<SpriteRenderer>();
 		sr.material.SetColor(colorID, outlineColors[(int)category]);
 		sr.material.SetFloat(emissionID, 0);
-	}
+        virtualPoint = transform.position;
+    }
 
 	void Update(){
 		if (controlling && !qte.getQTEStarted()){
-			Vector3 move = Vector3.zero;
+			if (mode.ToString().CompareTo("Keyboard") == 0)
+			{
+                Vector3 move = Vector3.zero;
 
-			if (Input.GetKey(KeyCode.W))
-				move += Vector3.up;
-			if (Input.GetKey(KeyCode.S))
-				move += Vector3.down;
-			if (Input.GetKey(KeyCode.A))
-				move += Vector3.left;
-			if (Input.GetKey(KeyCode.D))
-				move += Vector3.right;
+                if (Input.GetKey(KeyCode.W))
+                    move += Vector3.up;
+                if (Input.GetKey(KeyCode.S))
+                    move += Vector3.down;
+                if (Input.GetKey(KeyCode.A))
+                    move += Vector3.left;
+                if (Input.GetKey(KeyCode.D))
+                    move += Vector3.right;
 
-			move = move.normalized * (moveSpeed * Time.deltaTime);
+                move = move.normalized * (moveSpeed * Time.deltaTime);
 
-			if (Input.GetKey(KeyCode.Space)){
-				Vector3 toCamera = (Camera.main.transform.position - transform.position).normalized;
-				move += toCamera * (zMoveSpeed * Time.deltaTime);
-			}
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    Vector3 toCamera = (Camera.main.transform.position - transform.position).normalized;
+                    move += toCamera * (zMoveSpeed * Time.deltaTime);
+                }
 
-			transform.position += move;
+                transform.position += move;
 
-			// Check distance to camera
-			float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
-			if (distanceToCamera < destroyDistance){
-				OnReachCamera();
-			}
+                // Check distance to camera
+                float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
+                if (distanceToCamera < destroyDistance)
+                {
+                    OnReachCamera();
+                }
+
+                if (isWandering)
+                {
+                    currentVelocity = Vector3.Lerp(currentVelocity, targetDirection * maxWanderSpeed, Time.deltaTime / transitionDuration);
+                    transform.position += currentVelocity * Time.deltaTime;
+                }
+            }
+			else if (mode.ToString().CompareTo("MouseVelocity") == 0)
+			{
+                // Get raw mouse delta (not clamped to screen)
+                float mouseX = Input.GetAxis("Mouse X");
+                float mouseY = Input.GetAxis("Mouse Y");
+
+                // Project to XY plane
+                Vector3 direction = new Vector3(mouseX, mouseY, 0f).normalized;
+                float mouseSpeed = new Vector2(mouseX, mouseY).magnitude / Time.deltaTime;
+
+                // Cap speed
+                float cappedSpeed = Mathf.Min(mouseSpeed * 0.01f, maxMouseSpeed); // tweak factor
+                Vector3 targetVelocity = direction * cappedSpeed;
+
+                // Accelerate toward target velocity
+                velocity = Vector3.MoveTowards(velocity, targetVelocity, mouseAcceleration * Time.deltaTime);
+
+                // Move the object
+                transform.position += velocity * Time.deltaTime;
+
+                Vector3 move = Vector3.zero;
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    Vector3 toCamera = (Camera.main.transform.position - transform.position).normalized;
+                    move += toCamera * (zMoveSpeed * Time.deltaTime);
+                }
+                transform.position += move;
+
+                // Check distance to camera
+                float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
+                if (distanceToCamera < destroyDistance)
+                {
+                    OnReachCamera();
+                }
+                if (isWandering)
+                {
+                    currentVelocity = Vector3.Lerp(currentVelocity, targetDirection * maxWanderSpeed, Time.deltaTime / transitionDuration);
+                    transform.position += currentVelocity * Time.deltaTime;
+                }
+            }
+			else
+			{
+				// ---- Create virtual point ----
+                Plane movementPlane = new Plane(-mainCamera.transform.forward, virtualPoint);
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+                if (movementPlane.Raycast(ray, out float enter))
+                {
+                    Vector3 mouseWorldPos = ray.GetPoint(enter);
+
+                    Vector3 toMouse = mouseWorldPos - virtualPoint;
+                    Vector3 targetVirtualVelocity = toMouse.normalized * maxMouseSpeed;
+                    virtualVelocity = Vector3.MoveTowards(virtualVelocity, targetVirtualVelocity, mouseAcceleration * Time.deltaTime);
+                    virtualPoint += virtualVelocity * Time.deltaTime;
+                }
+				Debug.Log(virtualPoint);
+
+                // ---- Wander movement ----
+                if (isWandering)
+                {
+					if (wanderPosition.sqrMagnitude > 1) // If too far away from virtual point, ensure wandering towards virtual point
+					{
+                        currentVelocity = Vector3.Lerp(currentVelocity, (virtualPoint - transform.position) * maxWanderSpeed, Time.deltaTime / transitionDuration);
+                    }
+					else
+					{
+                        currentVelocity = Vector3.Lerp(currentVelocity, targetDirection * maxWanderSpeed, Time.deltaTime / transitionDuration);
+                    }
+					wanderPosition += currentVelocity * Time.deltaTime;
+					transform.position = virtualPoint + wanderPosition;
+                }
+            }
 		}
 
-		if (isWandering && !qte.getQTEStarted()){
-			currentVelocity = Vector3.Lerp(currentVelocity, targetDirection * maxWanderSpeed, Time.deltaTime / transitionDuration);
-			transform.position += currentVelocity * Time.deltaTime;
-		}
+
 	}
 
 	public void OnClick(){
@@ -175,14 +277,14 @@ public class Food : MonoBehaviour{
 
 		transform.position = targetPos;
 
-		controlling = true;
+        controlling = true;
 		isWandering = true;
 
 		StartCoroutine(ChangeDirectionRoutine());
 	}
 
 	IEnumerator ChangeDirectionRoutine(){
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(transitionDuration);
 		while (isWandering){
 			// Pick a new random direction on XY plane
 			float angle = UnityEngine.Random.Range(0f, 360f);
