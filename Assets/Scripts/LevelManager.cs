@@ -17,8 +17,6 @@ public class LevelManager : MonoBehaviour{
 
 	[Header("最大关卡时间")] public float maxTime;
 
-	[Header("最大QTE次数")] public int maxQTECount;
-
 	[Header("场景物体")] public NoteMenu noteMenu;
 	public QTEController qteController;
 
