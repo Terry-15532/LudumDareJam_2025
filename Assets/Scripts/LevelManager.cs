@@ -18,6 +18,10 @@ public class LevelManager : MonoBehaviour{
 	[Header("最大关卡时间")] public float maxTime;
 
 	[Header("场景物体")] public NoteMenu noteMenu;
+	
+	[Header("最大、最小坐标")] public Vector2 posMax;
+	public Vector2 posMin;
+	
 	public QTEController qteController;
 	private Sound BGM;
 

@@ -156,21 +156,20 @@ MonoBehaviour:
   icon: {fileID: 0}
   moveUpDistance: 0.2
   moveUpDuration: 0.2
-  moveSpeed: 1
+  maxSpeed: 5
   zMoveSpeed: 1
+  sensitivity: 10
   destroyDistance: 1
-  maxWanderSpeed: 0.25
-  transitionDuration: 0.1
-  directionChangeInterval: 0.2
   knockbackDistance: 0.5
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  posMax: {x: 7, y: 1}
+  posMin: {x: 4.5, y: 0.4}
   mode: 0
-  maxMouseSpeed: 5
-  mouseAcceleration: 10
-  stopThreshold: 0.05
-  maxWanderDistance: 1
+  targetZ: 0
+  noiseAmplitude: 0
+  noiseFrequency: 0
 --- !u!65 &681483314196611650
 BoxCollider:
   m_ObjectHideFlags: 0
