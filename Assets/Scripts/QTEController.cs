@@ -7,6 +7,9 @@ public class QTEController : MonoBehaviour{
 	public int maxGrace;
 	private int gracePeriodSpacebar;
 	private int gracePeriodBeat;
+	private bool currentBeatSuccess = false;
+	public int maxSpacebarCD = 30;
+	private int spacebarCD;
 	public int maxPulses;
 	public int successPulses;
 	public int pulseLeft;
@@ -42,9 +45,11 @@ public class QTEController : MonoBehaviour{
 
 	private void Update(){
 		if (started && ringStarted){
-			if (Input.GetKeyDown(KeyCode.Space)){
+			if (Input.GetKeyDown(KeyCode.Space) && spacebarCD <= 0){
 				Debug.Log("Spacebar");
+				spacebarCD = maxSpacebarCD;
 				if (gracePeriodBeat > 0){
+					currentBeatSuccess = true;
 					BeatSuccess(gracePeriodBeat);
 				}
 				else{
@@ -71,7 +76,12 @@ public class QTEController : MonoBehaviour{
 			if (gracePeriodBeat > 0)
 			{
 				gracePeriodBeat--;
+				if (gracePeriodBeat == 0 && !currentBeatSuccess)
+				{
+					BeatFailed();
+				}
 			}
+			spacebarCD--;
 		}
 	}
 
@@ -79,18 +89,20 @@ public class QTEController : MonoBehaviour{
 		pulseLeft--;
 		if (started){
 			if (gracePeriodSpacebar > 0){
-				BeatSuccess(gracePeriodSpacebar);
+                currentBeatSuccess = true;
+                BeatSuccess(gracePeriodSpacebar);
 			}
 			else{
 				gracePeriodBeat = maxGrace;
-				QTEVFX.Create(QTERanking.Failed);
+				currentBeatSuccess = false;
 			}
 		}
 	}
 
 	void BeatSuccess(int gracePeriod){
 		Debug.Log("success");
-		currentSuccess++;
+        SoundSys.PlaySound("heartbeat_final_clipped");
+        currentSuccess++;
         int error = Math.Abs(maxGrace - gracePeriod);
         if (error < maxGrace / 2)
         {
@@ -106,9 +118,13 @@ public class QTEController : MonoBehaviour{
             started = false;
 			ringStarted = false;
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
-			
-		}
+        }
 	}
+
+	void BeatFailed()
+	{
+        QTEVFX.Create(QTERanking.Failed);
+    }
 
 	public bool getQTEStarted(){
 		return started;
