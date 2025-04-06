@@ -16,6 +16,7 @@ public class AlertnessBar : MonoBehaviour
     private bool frozen = false;
 
     private Color startingColor;
+    public GameObject badEnding;
 
     private void Start()
     {
@@ -104,6 +105,7 @@ public class AlertnessBar : MonoBehaviour
 
     public void GameOver()
     {
+        badEnding.SetActive(true);
         Debug.Log("Game Over");
     }
 }

@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149db328be7ec4b4aa540a046659af41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxGrace: 5
+  maxGrace: 10
   maxPulses: 5
   successPulses: 3
   pulseLeft: 0
@@ -1885,6 +1885,7 @@ MonoBehaviour:
   - 75
   oscillationSpeed: 2
   collisionAddValue: 8
+  badEnding: {fileID: 903326212}
 --- !u!1 &863346065
 GameObject:
   m_ObjectHideFlags: 0

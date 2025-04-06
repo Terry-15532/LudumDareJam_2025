@@ -29,4 +29,9 @@ public class RingPulse : MonoBehaviour
             }
         }
     }
+
+    public void Activate()
+    {
+        deactivated = false;
+    }
 }
