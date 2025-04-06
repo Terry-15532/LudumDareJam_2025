@@ -2,30 +2,46 @@ using UnityEngine;
 
 public class DragCameraX : MonoBehaviour
 {
-    public float dragSpeed = 5f;
-    public float minX = -10f;
-    public float maxX = 10f;
+	public float dragSpeed = 5f;
+	public float minX = -10f;
+	public float maxX = 10f;
+	public float smoothing = 5f;
 
-    private Vector3 lastMousePos;
+	private Vector3 initialPosition;
+	private float targetX;
+	private bool isDragging = false;
+	private Vector3 lastMousePosition;
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            lastMousePos = Input.mousePosition;
-        }
+	void Start()
+	{
+		initialPosition = transform.position;
+		targetX = transform.position.x;
+	}
 
-        if (Input.GetMouseButton(1))
-        {
-            Vector3 delta = Input.mousePosition - lastMousePos;
-            float moveX = -delta.x * dragSpeed * Time.deltaTime;
+	void Update()
+	{
+		if (Input.GetMouseButtonDown(1))
+		{
+			isDragging = true;
+			lastMousePosition = Input.mousePosition;
+		}
 
-            Vector3 newPos = transform.position + new Vector3(moveX, 0f, 0f);
-            newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
+		if (Input.GetMouseButtonUp(1))
+		{
+			isDragging = false;
+		}
 
-            transform.position = newPos;
+		if (isDragging)
+		{
+			Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
+			float deltaX = mouseDelta.x * dragSpeed * 0.01f;
 
-            lastMousePos = Input.mousePosition;
-        }
-    }
+			targetX = Mathf.Clamp(targetX + deltaX, initialPosition.x + minX, initialPosition.x + maxX);
+			lastMousePosition = Input.mousePosition;
+		}
+		
+		Vector3 currentPosition = transform.position;
+		currentPosition.x = Mathf.Lerp(currentPosition.x, targetX, Time.deltaTime * smoothing);
+		transform.position = currentPosition;
+	}
 }

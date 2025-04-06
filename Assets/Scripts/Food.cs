@@ -158,7 +158,8 @@ public class Food : MonoBehaviour{
 	void OnReachObstacle(){
 		// You can add more effects here if you want
 		controlling = false;
-		selected = false;
+		// selected = false;
+		CameraController.instance.Shake(0.5f);
 		StartCoroutine(SmoothKnockback());
 	}
 
