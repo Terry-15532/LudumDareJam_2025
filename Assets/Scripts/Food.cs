@@ -444,24 +444,22 @@ public class Food : MonoBehaviour{
 
 	void Update(){
 		if (controlling && !qte.getQTEStarted()){
-			if (controlling){
-				Vector3 mousePos = Tools.GetMousePosGivenZ(targetPos.z);
+			Vector3 mousePos = Tools.GetMousePosGivenZ(targetPos.z);
 
-				if (Input.GetKey(KeyCode.Space)){
-					targetZ -= zMoveSpeed * Time.deltaTime;
-					mousePos.z = targetZ;
-				}
-
-				var delta = Vector3.Lerp(targetPos, mousePos, sensitivity * Time.deltaTime) - targetPos;
-
-				delta = delta.normalized * Mathf.Clamp(delta.magnitude, 0, maxSpeed * Time.deltaTime);
-
-				targetPos += delta;
-
-				Vector3 noise = GetNoise(noiseAmplitude);
-
-				transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
+			if (Input.GetKey(KeyCode.Space)){
+				targetZ -= zMoveSpeed * Time.deltaTime;
+				mousePos.z = targetZ;
 			}
+
+			var delta = Vector3.Lerp(targetPos, mousePos, sensitivity * Time.deltaTime) - targetPos;
+
+			delta = delta.normalized * Mathf.Clamp(delta.magnitude, 0, maxSpeed * Time.deltaTime);
+
+			targetPos += delta;
+
+			Vector3 noise = GetNoise(noiseAmplitude);
+
+			transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
 
 			float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
 			if (distanceToCamera < destroyDistance){
@@ -552,6 +550,7 @@ public class Food : MonoBehaviour{
 		StartCoroutine(FlashRoutine());
 		Vector3 start = transform.position;
 		Vector3 end = start + transform.forward * knockbackDistance;
+		targetZ = end.z;
 
 		float elapsed = 0f;
 		while (elapsed < knockbackDuration){
@@ -561,7 +560,6 @@ public class Food : MonoBehaviour{
 		}
 
 		transform.position = end;
-		targetZ = transform.position.z;
 	}
 
 	IEnumerator FlashRoutine(){
@@ -577,10 +575,5 @@ public class Food : MonoBehaviour{
 		}
 
 		controlling = true;
-	}
-
-	public void setControlling(bool b)
-	{
-		controlling = b;
 	}
 }
