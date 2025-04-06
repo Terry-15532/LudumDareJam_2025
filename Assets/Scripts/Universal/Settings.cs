@@ -4,7 +4,7 @@ using UnityEngine;
 public class SettingsData : ICloneable{
 	public bool inverseMouseDirection;
 	public bool fullScreen;
-	public float volume;
+	public float volume = 1;
 	public float cameraShakeIntensity;
 	public Language language;
 

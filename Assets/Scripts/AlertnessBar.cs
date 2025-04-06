@@ -109,7 +109,7 @@ public class AlertnessBar : MonoBehaviour
         frozen = false;
         leftBar.color = startingColor;
         rightBar.color = startingColor;
-        Destroy(QTEsound);
+        Destroy(QTEsound.gameObject);
         LevelManager.instance.ResumeBGM();
     }
 

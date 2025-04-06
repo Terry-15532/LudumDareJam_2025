@@ -460,7 +460,7 @@ public class Food : MonoBehaviour{
 
 				Vector3 noise = GetNoise(noiseAmplitude);
 
-				transform.position = Vector3.Lerp(transform.position, targetPos + noise, Time.deltaTime);
+				transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
 			}
 
 			float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -493,7 +493,7 @@ public class Food : MonoBehaviour{
 		controlling = false;
 		Camera.main.GetComponent<Click>().StopControlling();
 		LevelManager.OnFoodReached(this);
-
+		SoundSys.PlaySound("eat_short");
 		Destroy(gameObject);
 	}
 
@@ -515,6 +515,7 @@ public class Food : MonoBehaviour{
 		// selected = false;
 		CameraController.instance.Shake(0.5f);
 		StartCoroutine(SmoothKnockback());
+		SoundSys.PlaySound("hit");
 	}
 
 	IEnumerator MoveUpSmoothly(){
@@ -560,6 +561,7 @@ public class Food : MonoBehaviour{
 		}
 
 		transform.position = end;
+		targetZ = transform.position.z;
 	}
 
 	IEnumerator FlashRoutine(){

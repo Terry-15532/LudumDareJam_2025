@@ -29,12 +29,4 @@ public static class ResourceManager{
 			return r;
 		}
 	}
-
-	public static void Preload(){
-		foreach (string path in preloadedResources){
-			Load<VisualEffect>(path);
-		}
-
-		// Shader.WarmupAllShaders();
-	}
 }
