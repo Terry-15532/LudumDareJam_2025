@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -17,47 +18,44 @@ public class QTEController : MonoBehaviour{
 		StartCoroutine(startedQTE());
 	}
 
-	IEnumerator startedQTE()
-	{
-        textboxAnimator.Play("Pop-up");
-        yield return new WaitForSeconds(1.5f);
-        transform.GetChild(0).gameObject.SetActive(true);
-        ring1.setRadius(500);
-        ring2.setRadius(1000);
-        pulseLeft = maxPulses;
-        currentSuccess = 0;
-        started = true;
-        ring1.GetComponent<RingPulse>().Activate();
-        ring2.GetComponent<RingPulse>().Activate();
+	IEnumerator startedQTE(){
+		textboxAnimator.Play("Pop-up");
 		yield return new WaitForSeconds(1.5f);
-        textboxAnimator.Play("Pop-down");
-    }
+		transform.GetChild(0).gameObject.SetActive(true);
+		ring1.setRadius(500);
+		ring2.setRadius(1000);
+		pulseLeft = maxPulses;
+		currentSuccess = 0;
+		started = true;
+		ring1.GetComponent<RingPulse>().Activate();
+		ring2.GetComponent<RingPulse>().Activate();
+		yield return new WaitForSeconds(1.5f);
+		textboxAnimator.Play("Pop-down");
+	}
 
-	private void Update()
-    {
-        if (started)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("Spacebar");
-                if (gracePeriod > 0)
-                { BeatSuccess(gracePeriod); }
-                else
-                { gracePeriod = maxGrace; }
-            }
-            //Debug.Log("pulse left: " + pulseLeft + "; gracePeriod: " + gracePeriod);
-            if (pulseLeft == 0 && gracePeriod <= 0)
-            {
-                started = false;
-                FindFirstObjectByType<AlertnessBar>().GameOver();
-            }
-        }
-    }
+	private void Update(){
+		if (started){
+			if (Input.GetKeyDown(KeyCode.Space)){
+				Debug.Log("Spacebar");
+				if (gracePeriod > 0){
+					BeatSuccess(gracePeriod);
+				}
+				else{
+					gracePeriod = maxGrace;
+				}
+			}
+
+			//Debug.Log("pulse left: " + pulseLeft + "; gracePeriod: " + gracePeriod);
+			if (pulseLeft == 0 && gracePeriod <= 0){
+				started = false;
+				FindFirstObjectByType<AlertnessBar>().GameOver();
+			}
+		}
+	}
 
 	// Update is called once per frame
 	void FixedUpdate(){
 		if (started){
-
 			if (gracePeriod > 0){
 				gracePeriod--;
 			}
@@ -73,8 +71,7 @@ public class QTEController : MonoBehaviour{
 		pulseLeft--;
 		if (started){
 			if (gracePeriod > 0){
-				BeatSuccess();
-				QTEVFX.Create(QTERanking.Perfect);
+				BeatSuccess(gracePeriod);
 			}
 			else{
 				gracePeriod = maxGrace;
@@ -89,7 +86,15 @@ public class QTEController : MonoBehaviour{
 		if (currentSuccess >= 3){
 			transform.GetChild(0).gameObject.SetActive(false);
 			started = false;
+			int error = Math.Abs(maxGrace - gracePeriod);
+			if (error < maxGrace / 2){
+				QTEVFX.Create(QTERanking.Perfect);
+			}
+			else{
+				QTEVFX.Create(QTERanking.Good);
+			}
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
+			
 		}
 	}
 

@@ -1145,6 +1145,7 @@ GameObject:
   - component: {fileID: 533093955}
   - component: {fileID: 533093953}
   - component: {fileID: 533093952}
+  - component: {fileID: 533093959}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1165,8 +1166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 0.1
-  minX: 4.967
-  maxX: 6.555
+  minX: -0.5
+  maxX: 0.5
+  smoothing: 5
 --- !u!114 &533093953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1299,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 2.57, y: 0, z: 0}
+--- !u!114 &533093959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533093951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bc953fb584d7e4796815c2409e650b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleFrequency: 0.5
+  idleAmplitude: 0.5
+  shakeFrequency: 15
+  shakeAmplitude: 2
+  mouseSensitivity: 1
+  mouseSmoothing: 20
+  maxMouseOffset: 3
 --- !u!1 &550743829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,7 +1542,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 111612808c89501488c88e644c35a022, type: 2}
+      objectReference: {fileID: 2100000, guid: 9598d5639c6a8f946be89e66e3f8aea4, type: 2}
     - target: {fileID: -7029948723529949830, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: m_IsActive
@@ -2028,7 +2049,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1988483909}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2996,11 +3017,11 @@ MonoBehaviour:
   icon: {fileID: 0}
   moveUpDistance: 0.2
   moveUpDuration: 0.2
-  moveSpeed: 0.5
-  zMoveSpeed: 0.5
+  moveSpeed: 1
+  zMoveSpeed: 2
   destroyDistance: 1
-  maxWanderSpeed: 0.25
-  transitionDuration: 1
+  maxWanderSpeed: 2
+  transitionDuration: 2
   directionChangeInterval: 0.2
   knockbackDistance: 0.5
   knockbackDuration: 0.5
@@ -4226,7 +4247,7 @@ Canvas:
   m_GameObject: {fileID: 1849301511}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 533093957}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -4238,7 +4259,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!224 &1849301515
 RectTransform:

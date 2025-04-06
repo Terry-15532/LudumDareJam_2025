@@ -552,6 +552,7 @@ MonoBehaviour:
   - 75
   oscillationSpeed: 2
   collisionAddValue: 8
+  badEnding: {fileID: 0}
 --- !u!1 &427749776
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +774,7 @@ MonoBehaviour:
   dragSpeed: 0.2
   minX: 4.967
   maxX: 6.555
+  smoothing: 5
 --- !u!114 &533093953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,17 +1006,17 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 111612808c89501488c88e644c35a022, type: 2}
+      objectReference: {fileID: 2100000, guid: 3ee77ca6857b79f4580d7ce71cfb63ad, type: 2}
     - target: {fileID: -7511558181221131132, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 111612808c89501488c88e644c35a022, type: 2}
+      objectReference: {fileID: 2100000, guid: 9f80f5703dac4704b905cc560fb30557, type: 2}
     - target: {fileID: -7511558181221131132, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 111612808c89501488c88e644c35a022, type: 2}
+      objectReference: {fileID: 2100000, guid: 9598d5639c6a8f946be89e66e3f8aea4, type: 2}
     - target: {fileID: -7029948723529949830, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: m_IsActive
@@ -1465,6 +1467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  category: 0
+  icon: {fileID: 0}
   moveUpDistance: 0.2
   moveUpDuration: 0.2
   moveSpeed: 1
@@ -1477,6 +1481,11 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  mode: 0
+  maxMouseSpeed: 5
+  mouseAcceleration: 10
+  stopThreshold: 0.05
+  maxWanderDistance: 1
 --- !u!54 &1026936622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2182,6 +2191,7 @@ MonoBehaviour:
   pulseLeft: 0
   ring1: {fileID: 915946479}
   ring2: {fileID: 664091870}
+  textboxAnimator: {fileID: 0}
 --- !u!1 &1622494033
 GameObject:
   m_ObjectHideFlags: 0
