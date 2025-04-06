@@ -576,4 +576,9 @@ public class Food : MonoBehaviour{
 
 		controlling = true;
 	}
+
+	public void setControlling(bool b)
+	{
+		controlling = b;
+	}
 }
