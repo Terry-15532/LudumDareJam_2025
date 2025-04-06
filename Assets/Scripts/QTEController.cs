@@ -7,6 +7,7 @@ public class QTEController : MonoBehaviour{
 	public int maxGrace;
 	private int gracePeriodSpacebar;
 	private int gracePeriodBeat;
+	private bool currentBeatSuccess = false;
 	public int maxSpacebarCD = 30;
 	private int spacebarCD;
 	public int maxPulses;
@@ -48,6 +49,7 @@ public class QTEController : MonoBehaviour{
 				Debug.Log("Spacebar");
 				spacebarCD = maxSpacebarCD;
 				if (gracePeriodBeat > 0){
+					currentBeatSuccess = true;
 					BeatSuccess(gracePeriodBeat);
 				}
 				else{
@@ -74,6 +76,10 @@ public class QTEController : MonoBehaviour{
 			if (gracePeriodBeat > 0)
 			{
 				gracePeriodBeat--;
+				if (gracePeriodBeat == 0 && !currentBeatSuccess)
+				{
+					BeatFailed();
+				}
 			}
 			spacebarCD--;
 		}
@@ -83,11 +89,12 @@ public class QTEController : MonoBehaviour{
 		pulseLeft--;
 		if (started){
 			if (gracePeriodSpacebar > 0){
-				BeatSuccess(gracePeriodSpacebar);
+                currentBeatSuccess = true;
+                BeatSuccess(gracePeriodSpacebar);
 			}
 			else{
 				gracePeriodBeat = maxGrace;
-				QTEVFX.Create(QTERanking.Failed);
+				currentBeatSuccess = false;
 			}
 		}
 	}
@@ -113,6 +120,11 @@ public class QTEController : MonoBehaviour{
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
         }
 	}
+
+	void BeatFailed()
+	{
+        QTEVFX.Create(QTERanking.Failed);
+    }
 
 	public bool getQTEStarted(){
 		return started;
