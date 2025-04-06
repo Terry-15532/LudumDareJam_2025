@@ -453,7 +453,7 @@ public class Food : MonoBehaviour{
 			}
 
 			var delta = Vector3.Lerp(targetPos, mousePos, sensitivity * Time.deltaTime) - targetPos;
-			delta.z = targetPos.z.Lerp(targetZ, 5 * Time.deltaTime);
+			delta.z = targetPos.z.Lerp(targetZ, 5 * Time.deltaTime) - targetPos.z;
 
 			delta = delta.normalized * Mathf.Clamp(delta.magnitude, 0, maxSpeed * Time.deltaTime);
 
