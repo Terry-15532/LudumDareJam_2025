@@ -83,16 +83,18 @@ public class QTEController : MonoBehaviour{
 	void BeatSuccess(){
 		Debug.Log("success");
 		currentSuccess++;
-		if (currentSuccess >= 3){
+        int error = Math.Abs(maxGrace - gracePeriod);
+        if (error < maxGrace / 2)
+        {
+            QTEVFX.Create(QTERanking.Perfect);
+        }
+        else
+        {
+            QTEVFX.Create(QTERanking.Good);
+        }
+        if (currentSuccess >= 3){
 			transform.GetChild(0).gameObject.SetActive(false);
 			started = false;
-			int error = Math.Abs(maxGrace - gracePeriod);
-			if (error < maxGrace / 2){
-				QTEVFX.Create(QTERanking.Perfect);
-			}
-			else{
-				QTEVFX.Create(QTERanking.Good);
-			}
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
 			
 		}

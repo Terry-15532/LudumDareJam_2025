@@ -18,6 +18,8 @@ public class AlertnessBar : MonoBehaviour
     private Color startingColor;
     public GameObject badEnding;
     private Sound QTEsound;
+    public Image head;
+    public Color alertColor;
 
     private void Start()
     {
@@ -76,8 +78,8 @@ public class AlertnessBar : MonoBehaviour
     void FreezeBar()
     {
         frozen = true;
-        leftBar.color = Color.red;
-        rightBar.color = Color.red;
+        leftBar.color = alertColor;
+        rightBar.color = alertColor;
 
         OnBarFrozen();
     }
@@ -103,6 +105,7 @@ public class AlertnessBar : MonoBehaviour
     public void UnfreezeBar()
     {
         alertLevel++;
+        head.sprite = ResourceManager.Load<Sprite>("Sprites/bar" + alertLevel.ToString());
         frozen = false;
         leftBar.color = startingColor;
         rightBar.color = startingColor;
