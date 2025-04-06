@@ -450,10 +450,10 @@ public class Food : MonoBehaviour{
 
 			if (Input.GetKey(KeyCode.Space)){
 				targetZ -= zMoveSpeed * Time.deltaTime;
-				mousePos.z = targetZ;
 			}
 
 			var delta = Vector3.Lerp(targetPos, mousePos, sensitivity * Time.deltaTime) - targetPos;
+			delta.z = targetPos.z.Lerp(targetZ, 5 * Time.deltaTime);
 
 			delta = delta.normalized * Mathf.Clamp(delta.magnitude, 0, maxSpeed * Time.deltaTime);
 
@@ -556,6 +556,7 @@ public class Food : MonoBehaviour{
 		Vector3 start = transform.position;
 		Vector3 end = start + transform.forward * knockbackDistance;
 		targetZ = end.z;
+		targetPos.z = end.z;
 
 		float elapsed = 0f;
 		while (elapsed < knockbackDuration){

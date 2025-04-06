@@ -84,7 +84,7 @@ public class AudioClipEditor : EditorWindow{
 
 	private void DisplayVolumeControl(){
 		GUILayout.Label("Volume");
-		volume = EditorGUILayout.Slider(volume, 0f, 1f);
+		volume = EditorGUILayout.Slider(volume, 0f, 100f);
 	}
 
 	private void PlayTestAudio(){
