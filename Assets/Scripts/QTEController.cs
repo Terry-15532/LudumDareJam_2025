@@ -19,14 +19,15 @@ public class QTEController : MonoBehaviour{
 	}
 
 	IEnumerator startedQTE(){
+		started = true;
 		textboxAnimator.Play("Pop-up");
-		yield return new WaitForSeconds(1.5f);
-		transform.GetChild(0).gameObject.SetActive(true);
+        transform.Find("Fade").gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+		transform.Find("QTE Parent").gameObject.SetActive(true);
 		ring1.setRadius(500);
 		ring2.setRadius(1000);
 		pulseLeft = maxPulses;
 		currentSuccess = 0;
-		started = true;
 		ring1.GetComponent<RingPulse>().Activate();
 		ring2.GetComponent<RingPulse>().Activate();
 		yield return new WaitForSeconds(1.5f);
