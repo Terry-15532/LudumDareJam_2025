@@ -25,7 +25,12 @@ public class LevelManager : MonoBehaviour{
 	public QTEController qteController;
 	private Sound BGM;
 
-	public void Awake(){
+    public Texture2D defaultCursorTexture;
+    public Texture2D grabCursorTexture;
+    public Vector2 hotSpot = Vector2.zero;
+    public UnityEngine.CursorMode cursorMode = UnityEngine.CursorMode.Auto;
+
+    public void Awake(){
 		instance = this;
 	}
 
@@ -81,4 +86,14 @@ public class LevelManager : MonoBehaviour{
 	{
 		Destroy(BGM);
 	}
+
+	public void setCursorGrab()
+	{
+        Cursor.SetCursor(grabCursorTexture, hotSpot, cursorMode);
+    }
+
+	public void setCursorNormal()
+	{
+        Cursor.SetCursor(defaultCursorTexture, hotSpot, cursorMode);
+    }
 }

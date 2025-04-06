@@ -356,6 +356,7 @@ using UnityEngine.Serialization;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using static UnityEngine.InputSystem.UI.VirtualMouseInput;
 
 public enum FoodCategory{
 	Lemon = 0,
@@ -517,7 +518,9 @@ public class Food : MonoBehaviour{
 
 	public float noiseAmplitude, noiseFrequency;
 
-	void Start(){
+
+
+    void Start(){
 		icon = GetComponentInChildren<SpriteRenderer>();
 		icon.sprite = ResourceManager.Load<Sprite>("Sprites/FoodIcons/" + category.ToString());
 		qte = LevelManager.instance.qteController;
@@ -557,13 +560,13 @@ public class Food : MonoBehaviour{
 			float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
 			if (distanceToCamera < destroyDistance){
 				OnReachCamera();
-			}
-		}
-	}
-
-	public void OnClick(){
+            }
+        }
+    }
+    public void OnClick(){
 		selected = true;
-		StartCoroutine(MoveUpSmoothly());
+		LevelManager.instance.setCursorGrab();
+        StartCoroutine(MoveUpSmoothly());
 		sr.material.SetFloat(emissionID, 3.5f);
 	}
 
@@ -585,7 +588,8 @@ public class Food : MonoBehaviour{
 		Camera.main.GetComponent<Click>().StopControlling();
 		LevelManager.OnFoodReached(this);
 		SoundSys.PlaySound("eat_short");
-		Destroy(gameObject);
+        LevelManager.instance.setCursorNormal();
+        Destroy(gameObject);
 	}
 
 	void OnTriggerEnter(Collider other){

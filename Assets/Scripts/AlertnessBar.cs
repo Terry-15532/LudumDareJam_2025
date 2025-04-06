@@ -93,7 +93,7 @@ public class AlertnessBar : MonoBehaviour
         LevelManager.instance.PauseBGM();
         if (alertLevel < 3)
         {
-            QTEsound = SoundSys.PlaySound("QTE", true);
+            QTEsound = SoundSys.PlaySound("QTE", true, 0, false, volume: 0.7f);
             FindAnyObjectByType<QTEController>().startQTE();
         }
         else

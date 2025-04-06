@@ -7,6 +7,8 @@ public class QTEController : MonoBehaviour{
 	public int maxGrace;
 	private int gracePeriodSpacebar;
 	private int gracePeriodBeat;
+	public int maxSpacebarCD = 30;
+	private int spacebarCD;
 	public int maxPulses;
 	public int successPulses;
 	public int pulseLeft;
@@ -42,8 +44,9 @@ public class QTEController : MonoBehaviour{
 
 	private void Update(){
 		if (started && ringStarted){
-			if (Input.GetKeyDown(KeyCode.Space)){
+			if (Input.GetKeyDown(KeyCode.Space) && spacebarCD <= 0){
 				Debug.Log("Spacebar");
+				spacebarCD = maxSpacebarCD;
 				if (gracePeriodBeat > 0){
 					BeatSuccess(gracePeriodBeat);
 				}
@@ -72,6 +75,7 @@ public class QTEController : MonoBehaviour{
 			{
 				gracePeriodBeat--;
 			}
+			spacebarCD--;
 		}
 	}
 
@@ -90,7 +94,8 @@ public class QTEController : MonoBehaviour{
 
 	void BeatSuccess(int gracePeriod){
 		Debug.Log("success");
-		currentSuccess++;
+        SoundSys.PlaySound("heartbeat_final_clipped");
+        currentSuccess++;
         int error = Math.Abs(maxGrace - gracePeriod);
         if (error < maxGrace / 2)
         {
@@ -106,8 +111,7 @@ public class QTEController : MonoBehaviour{
             started = false;
 			ringStarted = false;
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
-			
-		}
+        }
 	}
 
 	public bool getQTEStarted(){
