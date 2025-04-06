@@ -17,6 +17,7 @@ public class AlertnessBar : MonoBehaviour
 
     private Color startingColor;
     public GameObject badEnding;
+    private Sound QTEsound;
 
     private void Start()
     {
@@ -85,11 +86,15 @@ public class AlertnessBar : MonoBehaviour
     {
         // Do whatever you need when it freezes
         Debug.Log("Bar frozen. Calling function.");
+
         // Call your function here
+        LevelManager.instance.PauseBGM();
         if (alertLevel < 3)
         {
+            QTEsound = SoundSys.PlaySound("QTE", true);
             FindAnyObjectByType<QTEController>().startQTE();
-        } else
+        }
+        else
         {
             GameOver();
         }
@@ -101,10 +106,14 @@ public class AlertnessBar : MonoBehaviour
         frozen = false;
         leftBar.color = startingColor;
         rightBar.color = startingColor;
+        Destroy(QTEsound);
+        LevelManager.instance.ResumeBGM();
     }
 
     public void GameOver()
     {
+        LevelManager.instance.StopBGM();
+        SoundSys.PlaySound("BadEnding", false, 2);
         badEnding.SetActive(true);
         Debug.Log("Game Over");
     }

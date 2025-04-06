@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3426008005575950985}
   - component: {fileID: 8139314625581223106}
   - component: {fileID: 6814275910277878023}
+  - component: {fileID: 313774497448331445}
+  - component: {fileID: 1089188384070265361}
   m_Layer: 0
   m_Name: Mango
   m_TagString: ClickableSprite
@@ -110,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.375048, y: 3.6990342, z: 0.12862748}
-  m_Center: {x: -0.114398405, y: 0.04446337, z: 0.027257632}
+  m_Size: {x: 3.4095495, y: 2.5612442, z: 0.12862748}
+  m_Center: {x: -0.097146936, y: 0.6133552, z: 0.027257632}
 --- !u!54 &8139314625581223106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,6 +167,53 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  mode: 0
+  maxMouseSpeed: 5
+  mouseAcceleration: 10
+  stopThreshold: 0.05
+  maxWanderDistance: 1
+--- !u!65 &313774497448331445
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999975400759609755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3019916, y: 1.5003178, z: 0.2}
+  m_Center: {x: 1.0066158, y: -1.3882784, z: 0}
+--- !u!65 &1089188384070265361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999975400759609755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4688548, y: 0.91144747, z: 0.2}
+  m_Center: {x: -0.42691398, y: -1.1409464, z: 0}
 --- !u!1 &7782221444736065394
 GameObject:
   m_ObjectHideFlags: 0
