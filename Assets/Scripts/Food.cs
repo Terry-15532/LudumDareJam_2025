@@ -353,6 +353,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum FoodCategory{
 	Lemon = 0,
@@ -369,7 +372,9 @@ public enum FoodCategory{
 	RiceBall = 11,
 	DonutBlue = 12,
 	Watermelon = 13,
-	DonutPink = 14
+	DonutPink = 14,
+	Cake = 15,
+	Pudding = 16
 }
 
 public enum MovementMode{
@@ -378,8 +383,87 @@ public enum MovementMode{
 	MousePosition
 }
 
+#if UNITY_EDITOR
+[CustomEditor(typeof(Food))]
+public class FoodEditor : Editor{
+	private Food food;
+	private SerializedProperty categoryProp;
+	private FoodCategory previousCategory;
+
+	private void OnEnable(){
+		food = (Food)target;
+		categoryProp = serializedObject.FindProperty("category");
+		previousCategory = food.category;
+	}
+
+	public override void OnInspectorGUI(){
+		serializedObject.Update();
+
+		EditorGUI.BeginChangeCheck();
+		EditorGUILayout.PropertyField(categoryProp);
+
+		if (EditorGUI.EndChangeCheck()){
+			serializedObject.ApplyModifiedProperties();
+
+			if (food.category != previousCategory){
+				ReplaceWithPrefab(food.category);
+				return;
+			}
+		}
+
+		DrawDefaultInspector();
+		serializedObject.ApplyModifiedProperties();
+	}
+
+	private void ReplaceWithPrefab(FoodCategory category){
+		Food prefab = Resources.Load<Food>("Prefabs/Foods/" + category.ToString());
+
+		if (prefab == null){
+			Debug.LogWarning($"找不到预制体：{category}");
+			return;
+		}
+
+		GameObject oldFood = food.gameObject;
+		Vector3 pos = oldFood.transform.position;
+		Quaternion rot = oldFood.transform.rotation;
+		Transform parent = oldFood.transform.parent;
+
+		Food newFood = Instantiate(prefab, parent, true);
+		newFood.transform.position = pos;
+		newFood.transform.rotation = rot;
+		newFood.name = category.ToString();
+
+		int siblingIndex = oldFood.transform.GetSiblingIndex();
+		newFood.transform.SetSiblingIndex(siblingIndex);
+		SerializedObject oldSO = new SerializedObject(oldFood);
+		SerializedObject newSO = new SerializedObject(newFood);
+
+
+		SerializedProperty prop = oldSO.GetIterator();
+
+		while (prop.NextVisible(true)){
+			if (prop.name == "m_Script" || prop.name == "category")
+				continue;
+
+			SerializedProperty newProp = newSO.FindProperty(prop.name);
+			if (newProp != null)
+				newProp.serializedObject.CopyFromSerializedProperty(prop);
+		}
+
+		newSO.ApplyModifiedProperties();
+
+		newFood.category = category;
+
+		Selection.activeGameObject = newFood.gameObject;
+
+		Undo.RegisterCreatedObjectUndo(newFood, category.ToString());
+		Undo.DestroyObjectImmediate(oldFood);
+	}
+}
+#endif
+
 public class Food : MonoBehaviour{
-	[Header("食物种类")] public FoodCategory category;
+	[HideInInspector] public FoodCategory category;
 	[Space] public SpriteRenderer icon;
 
 	public static readonly Color[] outlineColors = new[]{
@@ -398,6 +482,8 @@ public class Food : MonoBehaviour{
 		new Color(0.6f, 0.95f, 1f), // DonutBlue
 		new Color(0.2f, 0.6f, 0.2f), // Watermelon
 		new Color(0.95f, 0.6f, 0.6f), // DonutPink
+		new Color(0.95f, 0.6f, 0.6f), // Cake
+		new Color(1f, 0.85f, 0.4f) // Pudding
 	};
 
 
@@ -406,7 +492,7 @@ public class Food : MonoBehaviour{
 	private bool selected = false;
 	public float moveUpDistance = 5f;
 	public float moveUpDuration = 1.5f;
-	[FormerlySerializedAs("moveSpeed")] public float maxSpeed = 5f;
+	public float maxSpeed = 5f;
 	public float zMoveSpeed = 1f;
 	public float sensitivity = 10f;
 	public float destroyDistance = 5f;
