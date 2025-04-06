@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class QTEController : MonoBehaviour{
@@ -10,17 +11,27 @@ public class QTEController : MonoBehaviour{
 	private bool started = false;
 	public UIRing ring1;
 	public UIRing ring2;
+	public Animator textboxAnimator;
 
 	public void startQTE(){
-		transform.GetChild(0).gameObject.SetActive(true);
-		ring1.setRadius(500);
-		ring2.setRadius(1000);
-		pulseLeft = maxPulses;
-		currentSuccess = 0;
-		started = true;
-		ring1.GetComponent<RingPulse>().Activate();
-		ring2.GetComponent<RingPulse>().Activate();
+		StartCoroutine(startedQTE());
 	}
+
+	IEnumerator startedQTE()
+	{
+        textboxAnimator.Play("Pop-up");
+        yield return new WaitForSeconds(1.5f);
+        transform.GetChild(0).gameObject.SetActive(true);
+        ring1.setRadius(500);
+        ring2.setRadius(1000);
+        pulseLeft = maxPulses;
+        currentSuccess = 0;
+        started = true;
+        ring1.GetComponent<RingPulse>().Activate();
+        ring2.GetComponent<RingPulse>().Activate();
+		yield return new WaitForSeconds(1.5f);
+        textboxAnimator.Play("Pop-down");
+    }
 
 	private void Update()
     {
@@ -30,7 +41,7 @@ public class QTEController : MonoBehaviour{
             {
                 Debug.Log("Spacebar");
                 if (gracePeriod > 0)
-                { BeatSuccess(); }
+                { BeatSuccess(gracePeriod); }
                 else
                 { gracePeriod = maxGrace; }
             }
@@ -62,7 +73,7 @@ public class QTEController : MonoBehaviour{
 		pulseLeft--;
 		if (started){
 			if (gracePeriod > 0){
-				BeatSuccess();
+				BeatSuccess(gracePeriod);
 			}
 			else{
 				gracePeriod = maxGrace;
@@ -70,7 +81,7 @@ public class QTEController : MonoBehaviour{
 		}
 	}
 
-	void BeatSuccess(){
+	void BeatSuccess(int gracePeriod){
 		Debug.Log("success");
 		currentSuccess++;
 		if (currentSuccess >= 3){
