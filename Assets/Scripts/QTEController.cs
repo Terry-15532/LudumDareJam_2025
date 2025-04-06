@@ -61,9 +61,11 @@ public class QTEController : MonoBehaviour{
 		if (started){
 			if (gracePeriod > 0){
 				BeatSuccess();
+				QTEVFX.Create(QTERanking.Perfect);
 			}
 			else{
 				gracePeriod = maxGrace;
+				QTEVFX.Create(QTERanking.Failed);
 			}
 		}
 	}
