@@ -472,6 +472,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  posMax: {x: 7, y: 1}
+  posMin: {x: 4.5, y: 0.4}
   mode: 1
   targetZ: 0
   noiseAmplitude: 0
@@ -1000,6 +1002,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  posMax: {x: 7, y: 1}
+  posMin: {x: 4.5, y: 0.4}
   mode: 1
   targetZ: 0
   noiseAmplitude: 0
@@ -1158,8 +1162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 0.1
-  minX: 4.967
-  maxX: 6.555
+  minX: -0.5
+  maxX: 0.5
   smoothing: 5
 --- !u!114 &533093953
 MonoBehaviour:
@@ -1421,7 +1425,6 @@ MonoBehaviour:
   ring1: {fileID: 656299131}
   ring2: {fileID: 1881735346}
   textboxAnimator: {fileID: 158196627}
-  fade: {fileID: 1179881077}
 --- !u!224 &566908438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1525,7 +1528,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9598d5639c6a8f946be89e66e3f8aea4, type: 2}
+      objectReference: {fileID: 2100000, guid: 3ee77ca6857b79f4580d7ce71cfb63ad, type: 2}
     - target: {fileID: -7511558181221131132, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -2667,6 +2670,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  posMax: {x: 7, y: 1}
+  posMin: {x: 4.5, y: 0.4}
   mode: 1
   targetZ: 0
   noiseAmplitude: 0
@@ -3018,6 +3023,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.5
+  posMax: {x: 7, y: 1}
+  posMin: {x: 4.5, y: 0.4}
   mode: 1
   targetZ: 0
   noiseAmplitude: 0

@@ -415,6 +415,8 @@ public class Food : MonoBehaviour{
 	public float knockbackDuration = 0.5f;
 	public int flashCount = 3;
 	public float flashInterval = 0.5f;
+	[Header("最大、最小坐标")] public Vector2 posMax;
+	public Vector2 posMin;
 
 	public static int emissionID = Shader.PropertyToID("_Emission");
 	public static int colorID = Shader.PropertyToID("_EdgeColor");
@@ -460,6 +462,9 @@ public class Food : MonoBehaviour{
 			Vector3 noise = GetNoise(noiseAmplitude);
 
 			transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
+
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x, posMin.x, posMax.x),
+				Mathf.Clamp(transform.position.y, posMin.y, posMax.y), transform.position.z);
 
 			float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
 			if (distanceToCamera < destroyDistance){
@@ -575,10 +580,5 @@ public class Food : MonoBehaviour{
 		}
 
 		controlling = true;
-	}
-
-	public void setControlling(bool b)
-	{
-		controlling = b;
 	}
 }
