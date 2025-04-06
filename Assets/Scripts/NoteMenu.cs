@@ -29,16 +29,9 @@ public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandl
 		var item = NoteItem.Create(f, required);
 		itemList.Add(item);
 		item.GetComponent<RectTransform>().SetParent(scrollView.content, false);
-		if (!inOrder){
-			UpdateItems();
-		}
-		else{
-			if (itemList.Count == 1){
-				UpdateItems();
-			}
-			else{
-				item.SetAlpha(0);
-			}
+		UpdateItems();
+		if (inOrder && itemList.Count != 1){
+			item.SetAlpha(0);
 		}
 	}
 
@@ -80,14 +73,18 @@ public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandl
 	public void Remove(NoteItem item, int idx){
 		itemList.RemoveAt(idx);
 		if (inOrder){
-			if (itemList[0]){
-				itemList[0].SetAttrAni(1, 0.3f, ColorAttr.a);
+			if (itemList.Count > 0){
+				Tools.CallDelayed(() => {
+						itemList[0].SetAttrAni(1, 0.3f, ColorAttr.a);
+						UpdateItems();
+					}, 1.8f
+				);
 			}
 			else{
 				LevelManager.ToNextLevel();
 			}
 		}
-		else if(itemList.Count == 0){
+		else if (itemList.Count == 0){
 			LevelManager.ToNextLevel();
 		}
 
@@ -96,9 +93,7 @@ public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandl
 		Tools.CallDelayed(() => {
 			item.SetPositionAni((Vector2)item.position + new Vector2(20, 0), 0.3f);
 
-			Tools.CallDelayed(() => {
-				item.SetPositionAni((Vector2)item.position + new Vector2(-500, 0), 0.5f);
-			}, 0.3f);
+			Tools.CallDelayed(() => { item.SetPositionAni((Vector2)item.position + new Vector2(-500, 0), 0.5f); }, 0.3f);
 
 			Tools.CallDelayed(() => {
 				Destroy(item.gameObject);

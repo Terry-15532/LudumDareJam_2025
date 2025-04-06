@@ -22,6 +22,33 @@ public class LevelManager : MonoBehaviour{
 	[Header("最大、最小坐标")] public Vector2 posMax;
 	public Vector2 posMin;
 	
+	[Header("---食物相关设置---")]
+	[Header("抬手距离&时间")]
+	public float moveUpDistance = 0.2f;
+	public float moveUpDuration = 0.2f;
+	
+	[Header("最大速度&Z轴速度")]
+	public float maxSpeed = 2f;
+	public float zMoveSpeed = 1f;
+	
+	[Header("灵敏度")]
+	public float sensitivity = 10f;
+	
+	[Header("距离相机多近算吃到")]
+	public float destroyDistance = 1f;
+
+	[Header("击退距离&时间")]
+	public float knockbackDistance = 0.5f;
+	public float knockbackDuration = 0.5f;
+	
+	[Header("闪烁次数&间隔时间")]
+	public int flashCount = 3;
+	public float flashInterval = 0.3f;
+
+	[Header("噪声幅度&频率")]
+	public float noiseAmplitude = 0.3f; 
+		public float noiseFrequency = 1.5f;
+	
 	public QTEController qteController;
 	private Sound BGM;
 
