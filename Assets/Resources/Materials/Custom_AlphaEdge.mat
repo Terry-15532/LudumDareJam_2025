@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Emission: 3
+    - _Emission: 1
     - _Threshold: 0.1
     m_Colors:
     - _EdgeColor: {r: 1, g: 0.7061372, b: 0, a: 1}

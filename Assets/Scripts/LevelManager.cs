@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,14 +15,19 @@ public class LevelManager : MonoBehaviour{
 
 	[Header("玩家是否需要按照顺序拾取")] public bool inOrder;
 
-	public float maxTime;
-	public int maxQTECount;
+	[Header("最大关卡时间")] public float maxTime;
 
-	public NoteMenu noteMenu;
+	[Header("最大QTE次数")] public int maxQTECount;
+
+	[Header("场景物体")] public NoteMenu noteMenu;
+	public QTEController qteController;
 
 	public void Awake(){
-		InitNoteMenu();
 		instance = this;
+	}
+
+	public void Start(){
+		InitNoteMenu();
 	}
 
 	public void InitNoteMenu(){
@@ -31,15 +37,25 @@ public class LevelManager : MonoBehaviour{
 			noteMenu.AddFood(c, counts[i]);
 			i++;
 		}
+
+		noteMenu.Show();
+		Tools.CallDelayed(() => { noteMenu.Fold(); }, 2f);
 	}
 
-	public void ToNextLevel(){
-		if (!isLastLevel){
-			SceneSwitching.SwitchTo((currLevel + 1).ToString());
-		}
-		else{
-			SceneSwitching.SwitchTo("Ending");
-		}
+	public static void ToNextLevel(){
+		Debug.Log("Level Complete!");
+		Tools.CallDelayed(() => {
+			if (!instance.isLastLevel){
+				SceneSwitching.SwitchTo((instance.currLevel + 1).ToString());
+			}
+			else{
+				SceneSwitching.SwitchTo("Ending");
+			}
+		}, 1);
+	}
+
+	public static void OnFoodReached(Food f){
+		instance.noteMenu.OnFoodReached(f);
 	}
 
 	public void RestartScene(){

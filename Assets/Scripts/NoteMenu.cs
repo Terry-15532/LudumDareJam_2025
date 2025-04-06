@@ -1,31 +1,40 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class NoteMenu : CustomUIElement{
+public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandler{
 	public Vector2 initPos;
 	public Vector2 delta;
 
-	[FormerlySerializedAs("keepOrder")] public bool inOrder = true;
+	public bool inOrder = true;
 
 	public ScrollRect scrollView;
 	public List<NoteItem> itemList;
 
+	private Coroutine foldDelay;
+
+	public override void Awake(){
+		base.Awake();
+		Initialize();
+	}
+
 	public void Initialize(){
 		itemList = new();
+		initPos = position;
 	}
 
 	public void AddFood(FoodCategory f, int required = 1){
 		var item = NoteItem.Create(f, required);
 		itemList.Add(item);
-		GetComponent<RectTransform>().SetParent(scrollView.content, false);
+		item.GetComponent<RectTransform>().SetParent(scrollView.content, false);
 		if (!inOrder){
-			LayoutRebuilder.ForceRebuildLayoutImmediate(scrollView.content);
+			UpdateItems();
 		}
 		else{
 			if (itemList.Count == 1){
-				LayoutRebuilder.ForceRebuildLayoutImmediate(scrollView.content);
+				UpdateItems();
 			}
 			else{
 				item.SetAlpha(0);
@@ -33,7 +42,7 @@ public class NoteMenu : CustomUIElement{
 		}
 	}
 
-	public void OnFoodPicked(Food f){
+	public void OnFoodReached(Food f){
 		if (inOrder){
 			var item = itemList[0];
 			if (f.category == item.category){
@@ -42,20 +51,28 @@ public class NoteMenu : CustomUIElement{
 				if (item.got >= item.required){
 					Remove(item, 0);
 				}
+				else{
+					Show();
+					Tools.CallDelayed(Fold, 1f);
+				}
 			}
 		}
 		else{
-			int i = 0;
-			foreach (var item in itemList){
+			for (int i = 0; i < itemList.Count; i++){
+				var item = itemList[i];
 				if (f.category == item.category){
 					item.got += 1;
 					item.RefreshInfo();
 					if (item.got >= item.required){
 						Remove(item, i);
+						i--;
+					}
+
+					else{
+						Show();
+						Tools.CallDelayed(Fold, 1f);
 					}
 				}
-
-				i++;
 			}
 		}
 	}
@@ -67,16 +84,38 @@ public class NoteMenu : CustomUIElement{
 				itemList[0].SetAttrAni(1, 0.3f, ColorAttr.a);
 			}
 			else{
-				LevelManager.instance.ToNextLevel();
+				LevelManager.ToNextLevel();
 			}
 		}
+		else if(itemList.Count == 0){
+			LevelManager.ToNextLevel();
+		}
 
-		item.SetPositionAni((Vector2)item.position + new Vector2(100, 0), 0.1f);
+		Show();
+
 		Tools.CallDelayed(() => {
-			item.SetPositionAni((Vector2)item.position + new Vector2(-1000, 0), 0.3f);
-			item.SetAttrAni(0, 0.3f, ColorAttr.a, hide: true);
-		}, 0.1f);
-		Tools.CallDelayed(() => { Destroy(item.gameObject); }, 0.3f);
+			item.SetPositionAni((Vector2)item.position + new Vector2(20, 0), 0.3f);
+
+			Tools.CallDelayed(() => {
+				item.SetPositionAni((Vector2)item.position + new Vector2(-500, 0), 0.5f);
+			}, 0.3f);
+
+			Tools.CallDelayed(() => {
+				Destroy(item.gameObject);
+				UpdateItems();
+				Fold();
+			}, 1f);
+		}, 0.5f);
+	}
+
+	public void UpdateItems(){
+		if (!inOrder){
+			int i = 0;
+			foreach (var item in itemList){
+				item.SetPositionAni(new Vector2(item.position.x, -10 - 80 * i), 0.3f);
+				i++;
+			}
+		}
 	}
 
 	public void Show(){
@@ -86,10 +125,22 @@ public class NoteMenu : CustomUIElement{
 
 	public void Fold(){
 		SetPositionAni(initPos, 0.3f);
-		SetAttrAni(0.3f, 0.3f, ColorAttr.a);
+		SetAttrAni(0.5f, 0.3f, ColorAttr.a);
 	}
 
 	public void Hide(){
-		SetAttrAni(0, 0.3f, ColorAttr.a, hide: true);
+		SetAttrAni(0, 0.4f, ColorAttr.a, hide: true, forceChangeAll: true);
+	}
+
+	public void OnPointerEnter(PointerEventData eventData){
+		if (foldDelay != null){
+			StopCoroutine(foldDelay);
+		}
+
+		Show();
+	}
+
+	public void OnPointerExit(PointerEventData eventData){
+		foldDelay = Tools.CallDelayed(Fold, 0.3f);
 	}
 }

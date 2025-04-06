@@ -12,7 +12,7 @@ public class NoteItem : CustomUIElement{
 
 	public static NoteItem Create(FoodCategory category, int requiredCount = 1){
 		var item = Instantiate(ResourceManager.LoadPrefab<NoteItem>());
-		item.icon.sprite = ResourceManager.Load<Sprite>("Resources/Sprites/FoodIcons" + category.ToString());
+		item.icon.sprite = ResourceManager.Load<Sprite>("Sprites/FoodIcons/" + category.ToString());
 		item.category = category;
 		item.required = requiredCount;
 		item.got = 0;
@@ -21,7 +21,7 @@ public class NoteItem : CustomUIElement{
 	}
 
 	public void RefreshInfo(){
-		count.text = got + " / " + required;
+		count.text = got + "/" + required;
 	}
 
 	

@@ -19,7 +19,7 @@ public static class ResourceManager{
 	}
 	
 	public static T LoadPrefab<T>() where T : Object{
-		string path = "Resource/Prefabs" + typeof(T).Name;
+		string path = "Prefabs/" + typeof(T).Name;
 		if (resources.TryGetValue(path, out object resource)){
 			return (T)resource;
 		}
