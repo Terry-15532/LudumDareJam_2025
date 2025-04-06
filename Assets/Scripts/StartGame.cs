@@ -2,6 +2,7 @@ using System.Collections;
 //using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class StartGame : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class StartGame : MonoBehaviour
     //public Lines[] lines;
     //public HoverDetection exit;
     public GameObject fade;
+    public GameObject intro;
+    public VideoPlayer introPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,14 @@ public class StartGame : MonoBehaviour
         //cutsceneAnimator.Play("FadeIn");
         //cutscene.DOPlay();
         yield return new WaitForSeconds(0.6f);
+
+        intro.SetActive(true);
+        introPlayer.Play();
+
+        yield return new WaitForSeconds(1f);
+
+        while (introPlayer.isPlaying)
+            yield return null;
 
         //foreach (Lines line in lines)
         //{
