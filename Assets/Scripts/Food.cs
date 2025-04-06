@@ -16,8 +16,9 @@ public enum FoodCategory{
 	Cheese = 9,
 	Sandwich = 10,
 	RiceBall = 11,
-	Donut = 12,
-	Watermelon = 13
+	DonutBlue = 12,
+	Watermelon = 13,
+	DonutPink = 14
 }
 
 public enum MovementMode
@@ -44,8 +45,9 @@ public class Food : MonoBehaviour{
 		new Color(1f, 0.85f, 0.4f), // Cheese
 		new Color(0.8f, 0.6f, 0.4f), // Sandwich
 		new Color(0.9f, 0.8f, 0.6f), // RiceBall
-		new Color(0.6f, 0.95f, 1f), // Donut
+		new Color(0.6f, 0.95f, 1f), // DonutBlue
 		new Color(0.2f, 0.6f, 0.2f), // Watermelon
+		new Color(0.95f, 0.6f, 0.6f), // DonutPink
 	};
 
 

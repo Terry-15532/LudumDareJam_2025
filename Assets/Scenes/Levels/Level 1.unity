@@ -1265,7 +1265,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9598d5639c6a8f946be89e66e3f8aea4, type: 2}
+      objectReference: {fileID: 2100000, guid: 3ee77ca6857b79f4580d7ce71cfb63ad, type: 2}
     - target: {fileID: -7511558181221131132, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -1275,7 +1275,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 111612808c89501488c88e644c35a022, type: 2}
+      objectReference: {fileID: 2100000, guid: 9598d5639c6a8f946be89e66e3f8aea4, type: 2}
     - target: {fileID: -7029948723529949830, guid: 468076928ceee564fa46c6a4ee8e622c,
         type: 3}
       propertyPath: m_IsActive
@@ -1782,7 +1782,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1988483909}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3970,7 +3970,7 @@ Canvas:
   m_GameObject: {fileID: 1849301511}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 533093957}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -3982,7 +3982,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!224 &1849301515
 RectTransform:

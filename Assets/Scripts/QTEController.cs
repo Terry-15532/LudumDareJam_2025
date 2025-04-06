@@ -73,10 +73,12 @@ public class QTEController : MonoBehaviour{
 		pulseLeft--;
 		if (started){
 			if (gracePeriod > 0){
-				BeatSuccess(gracePeriod);
+				BeatSuccess();
+				QTEVFX.Create(QTERanking.Perfect);
 			}
 			else{
 				gracePeriod = maxGrace;
+				QTEVFX.Create(QTERanking.Failed);
 			}
 		}
 	}
