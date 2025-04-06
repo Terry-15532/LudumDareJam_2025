@@ -20,17 +20,30 @@ public class QTEController : MonoBehaviour{
 		started = true;
 	}
 
+	private void Update()
+    {
+        if (started)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Spacebar");
+                if (gracePeriod > 0)
+                { BeatSuccess(); }
+                else
+                { gracePeriod = maxGrace; }
+            }
+            //Debug.Log("pulse left: " + pulseLeft + "; gracePeriod: " + gracePeriod);
+            if (pulseLeft == 0 && gracePeriod <= 0)
+            {
+                started = false;
+                FindFirstObjectByType<AlertnessBar>().GameOver();
+            }
+        }
+    }
+
 	// Update is called once per frame
 	void FixedUpdate(){
 		if (started){
-			if (Input.GetKeyDown(KeyCode.Space)){
-				if (gracePeriod > 0){
-					BeatSuccess();
-				}
-				else{
-					gracePeriod = maxGrace;
-				}
-			}
 
 			if (gracePeriod > 0){
 				gracePeriod--;
@@ -44,6 +57,7 @@ public class QTEController : MonoBehaviour{
 	}
 
 	public void BeatHit(){
+		pulseLeft--;
 		if (started){
 			if (gracePeriod > 0){
 				BeatSuccess();
