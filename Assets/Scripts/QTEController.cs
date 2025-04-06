@@ -18,6 +18,8 @@ public class QTEController : MonoBehaviour{
 		pulseLeft = maxPulses;
 		currentSuccess = 0;
 		started = true;
+		ring1.GetComponent<RingPulse>().Activate();
+		ring2.GetComponent<RingPulse>().Activate();
 	}
 
 	private void Update()

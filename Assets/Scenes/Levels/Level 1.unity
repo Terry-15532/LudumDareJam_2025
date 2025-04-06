@@ -3095,7 +3095,6 @@ MonoBehaviour:
   counts: 010000000200000001000000
   inOrder: 0
   maxTime: 10
-  maxQTECount: 3
   noteMenu: {fileID: 1522127437}
   qteController: {fileID: 566908437}
 --- !u!4 &1267828462
