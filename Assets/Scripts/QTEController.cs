@@ -38,7 +38,7 @@ public class QTEController : MonoBehaviour{
 			if (Input.GetKeyDown(KeyCode.Space)){
 				Debug.Log("Spacebar");
 				if (gracePeriod > 0){
-					BeatSuccess(gracePeriod);
+					BeatSuccess();
 				}
 				else{
 					gracePeriod = maxGrace;
@@ -71,7 +71,7 @@ public class QTEController : MonoBehaviour{
 		pulseLeft--;
 		if (started){
 			if (gracePeriod > 0){
-				BeatSuccess(gracePeriod);
+				BeatSuccess();
 			}
 			else{
 				gracePeriod = maxGrace;
@@ -80,7 +80,7 @@ public class QTEController : MonoBehaviour{
 		}
 	}
 
-	void BeatSuccess(int gracePeriod){
+	void BeatSuccess(){
 		Debug.Log("success");
 		currentSuccess++;
 		if (currentSuccess >= 3){
