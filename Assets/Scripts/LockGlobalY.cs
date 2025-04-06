@@ -12,7 +12,7 @@ public class LockGlobalY : MonoBehaviour
     private void Start()
     {
         originalScale = transform.localScale;
-        startingY = transform.position.y;
+        startingY = LevelManager.instance.posMin.y - 0.11f;
     }
 
     private void Update()
