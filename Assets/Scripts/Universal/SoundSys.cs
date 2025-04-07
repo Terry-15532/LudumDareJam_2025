@@ -24,7 +24,7 @@ public static class SoundSys{
 				CallDelayedAsync(() => { Object.DestroyImmediate(sound.gameObject); }, clip.length);
 			}
 
-			if (!destroyOnLoad){
+			if (!destroyOnLoad || loop){
 				Object.DontDestroyOnLoad(sound);
 			}
 

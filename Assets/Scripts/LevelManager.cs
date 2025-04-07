@@ -67,11 +67,14 @@ public class LevelManager : MonoBehaviour{
 		InitNoteMenu();
 
 		if (BGM == null){
-			BGM = SoundSys.PlaySound("BGM", true);
+			BGM = SoundSys.PlaySound("BGM", true, destroyOnLoad: false);
+		}
+		else{
+			BGM.audioSource.Play();
 		}
         if (Snoring == null)
         {
-			Snoring = SoundSys.PlaySound("male_snoring_new", true, volume: 0.35f);
+			Snoring = SoundSys.PlaySound("male_snoring_new", true, volume: 0.1f);
         }
     }
 

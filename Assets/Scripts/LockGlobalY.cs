@@ -13,6 +13,7 @@ public class LockGlobalY : MonoBehaviour
     {
         originalScale = transform.localScale;
         startingY = LevelManager.instance.posMin.y - 0.11f;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void Update()

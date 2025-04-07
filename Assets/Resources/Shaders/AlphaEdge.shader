@@ -8,13 +8,14 @@ Shader "Custom/AlphaEdge"{
     SubShader{
         Tags{
             "RenderType"="Transparent"
-            "Queue"="Transparent"
+            "Queue"="Geometry"
         }
         LOD 200
-        ZWrite on
+        ZWrite On
         ZTest LEqual
-        Cull off
+        Cull Off
         Blend SrcAlpha OneMinusSrcAlpha
+//        AlphaTest Greater 0.1
 
         Stencil{
             Ref [_Stencil]
@@ -63,6 +64,10 @@ Shader "Custom/AlphaEdge"{
                     if (abs(neighborPixel.a - alpha) > _Threshold){
                         return _EdgeColor * _Emission;
                     }
+                }
+
+                if(alpha<0.2){
+                    discard;
                 }
 
                 return currentPixel;

@@ -97,7 +97,10 @@ public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandl
 				Tools.CallDelayed(() => { item.SetPositionAni((Vector2)item.position + new Vector2(-500, 0), 0.5f); }, 0.3f);
 
 				Tools.CallDelayed(() => {
-					Destroy(item.gameObject);
+					if (item){
+						Destroy(item.gameObject);
+					}
+
 					UpdateItems();
 					Fold();
 				}, 1f);

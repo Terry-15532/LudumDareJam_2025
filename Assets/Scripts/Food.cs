@@ -253,21 +253,23 @@ public class Food : MonoBehaviour{
 	}
 
 	public void OnClick(){
-		selected = true;
-		LevelManager.instance.setCursorGrab();
-		StartCoroutine(MoveUpSmoothly());
-		sr.material.SetFloat(emissionID, 3.5f);
+		if (!qte.getQTEStarted()){
+			selected = true;
+			LevelManager.instance.setCursorGrab();
+			StartCoroutine(MoveUpSmoothly());
+			sr.material.SetFloat(emissionID, 3.5f);
+		}
 	}
 
 	public void OnMouseEnter(){
-		if (!selected){
+		if (!selected && !qte.getQTEStarted()){
 			sr.material.SetFloat(emissionID, 2.5f);
 			sr.material.SetColor(colorID, outlineColors[(int)category]);
 		}
 	}
 
 	public void OnMouseExit(){
-		if (!selected){
+		if (!selected && !qte.getQTEStarted()){
 			sr.material.SetFloat(emissionID, 1);
 			sr.material.SetColor(colorID, Color.black);
 		}
