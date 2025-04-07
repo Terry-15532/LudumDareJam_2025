@@ -118,10 +118,10 @@ public class QTEController : MonoBehaviour{
             QTEVFX.Create(QTERanking.Good);
         }
         if (currentSuccess >= 3){
-            transform.Find("QTE Parent").gameObject.SetActive(false);
-            transform.Find("Fade").gameObject.SetActive(false);
             started = false;
 			ringStarted = false;
+            transform.Find("QTE Parent").gameObject.SetActive(false);
+            transform.Find("Fade").gameObject.SetActive(false);
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
             ring1.GetComponent<RingPulse>().StopAll();
             ring2.GetComponent<RingPulse>().StopAll();

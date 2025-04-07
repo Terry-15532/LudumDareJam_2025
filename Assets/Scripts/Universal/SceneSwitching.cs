@@ -14,17 +14,17 @@ public class SceneSwitching : CustomUIElement{
 		s.SetActive(true);
 		s.SetAttrAni(0, 1, time1, ColorAttr.a, scaled: false);
 		//s.rectTransform.SetAsLastSibling();
-		CallDelayedAsync(() => {
+		CallDelayed(() => {
 			SceneManager.LoadScene(scene);
 			canvasRectTransform = null;
 			currScene = scene;
-			CallDelayedAsync(() => {
+			CallDelayed(() => {
 				s.SetAttrAni(1, 0, time2, ColorAttr.a, true, scaled: false);
 				if (afterLoad != null){
 					afterLoad();
 				}
 
-				CallDelayedAsync(() => { Destroy(s.gameObject); }, time2);
+				CallDelayed(() => { Destroy(s.gameObject); }, time2);
 			}, timeMiddle);
 		}, time1);
 	}

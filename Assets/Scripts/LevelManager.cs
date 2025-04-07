@@ -94,7 +94,8 @@ public class LevelManager : MonoBehaviour{
 		Debug.Log("Level Complete!");
 		Tools.CallDelayed(() => {
 			if (!instance.isLastLevel){
-				SceneSwitching.SwitchTo((instance.currLevel + 1).ToString());
+				SoundSys.PlaySound("eat_long").SetVolumeSmooth(0, 2.5f);
+				SceneSwitching.SwitchTo((instance.currLevel + 1).ToString(), time1: 2.5f);
 			}
 			else{
 				SoundSys.PlaySound("happy_ending_abridged", false, 2);
