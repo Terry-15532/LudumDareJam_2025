@@ -23,6 +23,7 @@ public class StartGameButton : Button{
 
 	public override void OnMouseEnter(){
 		base.OnMouseEnter();
+		SoundSys.PlaySound("Pop");
 		img.material.SetColor(colorID, new Color(0.95f, 0.6f, 0.7f));
 	}
 
@@ -33,6 +34,7 @@ public class StartGameButton : Button{
 
 	public override void OnMouseDown(){
 		base.OnMouseDown();
+		SoundSys.PlaySound("Pop");
 		img.material.SetColor(colorID, Color.black);
 	}
 
@@ -45,7 +47,7 @@ public class StartGameButton : Button{
 		if (firstTime){
 			img = GetComponent<Image>();
 			img.material.SetColor(colorID, Color.black);
-			img.material.SetFloat(emissionID, 3f);
+			img.material.SetFloat(emissionID, 2f);
 		}
 	}
 
@@ -78,6 +80,7 @@ public class StartGameButton : Button{
 		while (introPlayer.isPlaying)
 			yield return null;
 
-		SceneManager.LoadScene(0);
+		intro.SetActive(false);
+		SceneSwitching.SwitchTo("1");
 	}
 }

@@ -8061,8 +8061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200cd53dee665504fbcb0df65acbb666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currLevel: 0
-  isLastLevel: 0
+  currLevel: 3
+  isLastLevel: 1
   foods: 050000000a0000000e000000
   counts: 020000000100000001000000
   inOrder: 0
