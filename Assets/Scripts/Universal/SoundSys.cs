@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 public static class SoundSys{
 	public static event Action<float> onVolumeChanged;
 
-	public static Sound PlaySound(string name, bool loop = false, float delay = 0, bool threeD = false, float volume = 1){
+	public static Sound PlaySound(string name, bool loop = false, float delay = 0, bool threeD = false, float volume = 1, bool destroyOnLoad = false){
 		AudioClip clip = ResourceManager.Load<AudioClip>("Sounds/" + name);
 		if (clip){
 			var sound = (Sound)Create("Sound");
@@ -22,6 +22,10 @@ public static class SoundSys{
 
 			if (!loop){
 				CallDelayedAsync(() => { Object.DestroyImmediate(sound.gameObject); }, clip.length);
+			}
+
+			if (!destroyOnLoad){
+				Object.DontDestroyOnLoad(sound);
 			}
 
 			sound.audioSource.volume = volume;// * Settings.data.volume;

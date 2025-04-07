@@ -2133,6 +2133,8 @@ MonoBehaviour:
   maxRadius: 1000
   minRadius: 80
   shrinkSpeed: 200
+  pulseDuration: 0.4
+  scaleMultiplier: 1.2
 --- !u!222 &656299130
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3501,12 +3503,12 @@ MonoBehaviour:
   inOrder: 0
   noteMenu: {fileID: 1522127437}
   posMax: {x: 6.7, y: 1}
-  posMin: {x: 4.5, y: 0.3}
+  posMin: {x: 4.5, y: 0.2}
   moveUpDistance: 0.2
   moveUpDuration: 0.2
-  maxSpeed: 2
+  maxSpeed: 1
   zMoveSpeed: 1
-  sensitivity: 10
+  sensitivity: 5
   destroyDistance: 1
   knockbackDistance: 0.5
   knockbackDuration: 0.5
@@ -4072,7 +4074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 3d4915c4ff1a9684489c89847456bb3c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5056,6 +5058,8 @@ MonoBehaviour:
   maxRadius: 1000
   minRadius: 80
   shrinkSpeed: 200
+  pulseDuration: 0.4
+  scaleMultiplier: 1.2
 --- !u!222 &1881735348
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -16,7 +16,6 @@ public class Sound : MonoBehaviour {
 
     void Start() {
         //SoundSys.onVolumeChanged += OnVolumeChanged;
-        DontDestroyOnLoad(this);
     }
 
     public AudioSource audioSource;
