@@ -2690,7 +2690,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6412,7 +6412,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10836,7 +10836,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -13282,7 +13282,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -14415,6 +14415,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: QTE Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 1360863331880193166, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: shrinkSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 4400282160475952973, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -14440,6 +14445,11 @@ PrefabInstance:
       propertyPath: textboxAnimator
       value: 
       objectReference: {fileID: 158196627}
+    - target: {fileID: 6997569112850966680, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: shrinkSpeed
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
