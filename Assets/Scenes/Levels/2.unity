@@ -130,29 +130,13 @@ GameObject:
   - component: {fileID: 6715127}
   - component: {fileID: 6715126}
   - component: {fileID: 6715125}
-  - component: {fileID: 6715124}
   m_Layer: 0
   m_Name: Soda (1)
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6715124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6715123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Mango (1)
-  m_EditorClassIdentifier: 
-  category: 7
-  icon: {fileID: 6715127}
-  targetZ: 0
 --- !u!54 &6715125
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -265,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 6715123}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.579, y: -0.6930001, z: -1.108}
+  m_LocalPosition: {x: 6.579, y: -0.6930001, z: -0.783}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -919,144 +903,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &97705595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 97705600}
-  - component: {fileID: 97705599}
-  - component: {fileID: 97705598}
-  - component: {fileID: 97705597}
-  m_Layer: 0
-  m_Name: Sandwich
-  m_TagString: Obstacle
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!54 &97705597
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97705595}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &97705598
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97705595}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.8410707, y: 1.6560936, z: 0.12862748}
-  m_Center: {x: -0.026030919, y: -0.16175495, z: 0.027257632}
---- !u!212 &97705599
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97705595}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d0a7fc233372632469cf60f976cb232f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: ae2ef31fc321971438289da0ee1b403e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &97705600
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97705595}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.959, y: -0.90426, z: -1.5536}
-  m_LocalScale: {x: 0.22700332, y: 0.22700334, z: 0.22700332}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 752108210}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &120221962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1147,7 @@ Transform:
   m_GameObject: {fileID: 140638076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.486, y: -0.887, z: -1.125}
+  m_LocalPosition: {x: 5.739, y: -0.919, z: -0.982}
   m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1419,29 +1265,13 @@ GameObject:
   - component: {fileID: 170510209}
   - component: {fileID: 170510208}
   - component: {fileID: 170510207}
-  - component: {fileID: 170510206}
   m_Layer: 0
   m_Name: Soda (6)
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &170510206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170510205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Mango (1)
-  m_EditorClassIdentifier: 
-  category: 7
-  icon: {fileID: 170510209}
-  targetZ: 0
 --- !u!54 &170510207
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1554,7 +1384,7 @@ Transform:
   m_GameObject: {fileID: 170510205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.264, y: -0.25, z: -1.108}
+  m_LocalPosition: {x: 6.264, y: -0.25, z: -0.783}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2075,7 +1905,7 @@ Transform:
   m_GameObject: {fileID: 430182235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.01, y: 0, z: -0.38}
+  m_LocalPosition: {x: -11.37, y: -0.61, z: 2.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2641,7 +2471,7 @@ Transform:
   m_GameObject: {fileID: 546088103}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.538, y: -0.687, z: -1.01}
+  m_LocalPosition: {x: 5.538, y: -0.687, z: -0.735}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2978,7 +2808,7 @@ Transform:
   m_GameObject: {fileID: 565416803}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.675, y: -0.763, z: -1.435}
+  m_LocalPosition: {x: 6.837, y: -0.763, z: -1.327}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3239,29 +3069,13 @@ GameObject:
   - component: {fileID: 639557202}
   - component: {fileID: 639557201}
   - component: {fileID: 639557200}
-  - component: {fileID: 639557199}
   m_Layer: 0
   m_Name: Soda (3)
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &639557199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639557198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Mango (1)
-  m_EditorClassIdentifier: 
-  category: 7
-  icon: {fileID: 639557202}
-  targetZ: 0
 --- !u!54 &639557200
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3374,7 +3188,7 @@ Transform:
   m_GameObject: {fileID: 639557198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.259, y: -0.6930001, z: -1.108}
+  m_LocalPosition: {x: 6.259, y: -0.6930001, z: -0.783}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3647,108 +3461,6 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742051086}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d4b83380c2e2db342a8c2443d0536010, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.47058824}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 12, y: 12}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!1 &752108209
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 752108210}
-  - component: {fileID: 752108212}
-  - component: {fileID: 752108211}
-  m_Layer: 0
-  m_Name: Shadow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &752108210
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752108209}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.02, y: -2.75, z: 0.09}
-  m_LocalScale: {x: 0.3, y: 0.2580995, z: 0.17269285}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 97705600}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &752108211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752108209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506584c9d3740e446b376e70fe2ef8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 2
-  minScale: 0.1
---- !u!212 &752108212
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752108209}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4175,7 +3887,7 @@ Transform:
   m_GameObject: {fileID: 823228690}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.744, y: -0.687, z: -1.01}
+  m_LocalPosition: {x: 5.744, y: -0.687, z: -0.735}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4259,29 +3971,13 @@ GameObject:
   - component: {fileID: 852290268}
   - component: {fileID: 852290267}
   - component: {fileID: 852290266}
-  - component: {fileID: 852290265}
   m_Layer: 0
   m_Name: Soda (4)
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &852290265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852290264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Mango (1)
-  m_EditorClassIdentifier: 
-  category: 7
-  icon: {fileID: 852290268}
-  targetZ: 0
 --- !u!54 &852290266
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4394,7 +4090,7 @@ Transform:
   m_GameObject: {fileID: 852290264}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.685, y: -0.25, z: -1.108}
+  m_LocalPosition: {x: 6.685, y: -0.25, z: -0.783}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5202,7 +4898,7 @@ Transform:
   m_GameObject: {fileID: 997368915}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.61, y: -0.6930001, z: -0.842}
+  m_LocalPosition: {x: 6.61, y: -0.6930001, z: -0.318}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5644,7 +5340,7 @@ Transform:
   m_GameObject: {fileID: 1159274086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.797, y: -0.6930001, z: -0.842}
+  m_LocalPosition: {x: 4.797, y: -0.6930001, z: -0.765}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5813,11 +5509,10 @@ GameObject:
   - component: {fileID: 1222246726}
   - component: {fileID: 1222246725}
   - component: {fileID: 1222246724}
-  - component: {fileID: 1222246723}
   - component: {fileID: 1222246722}
   m_Layer: 0
   m_Name: Salad
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5843,21 +5538,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.4757771, y: 1.2561008, z: 0.19999985}
   m_Center: {x: -0.053932864, y: -1.111982, z: 0.00000007325696}
---- !u!114 &1222246723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222246721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Pudding (1)
-  m_EditorClassIdentifier: 
-  category: 8
-  icon: {fileID: 1222246726}
-  targetZ: 0
 --- !u!54 &1222246724
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5970,7 +5650,7 @@ Transform:
   m_GameObject: {fileID: 1222246721}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.908, y: -0.887, z: -1.24}
+  m_LocalPosition: {x: 6.253, y: -0.887, z: -1.176}
   m_LocalScale: {x: 0.15191765, y: 0.15191767, z: 0.15191765}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6026,8 +5706,8 @@ MonoBehaviour:
   flashInterval: 0.3
   noiseAmplitude: 0.3
   noiseFrequency: 1.5
-  noiseAmplitudeMultiplier: 1.5
-  noiseFrequencyMultiplier: 2
+  noiseAmplitudeMultiplier: 1
+  noiseFrequencyMultiplier: 1
   qteController: {fileID: 566908437}
   defaultCursorTexture: {fileID: 2800000, guid: 2de5668decbadfb478ba02fa0694f499,
     type: 3}
@@ -6224,7 +5904,7 @@ Transform:
   m_GameObject: {fileID: 1278920476}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.219999, y: -0.5333332, z: 0.32666683}
+  m_LocalPosition: {x: -14.219999, y: -1.24, z: 0.32666683}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6362,7 +6042,7 @@ Transform:
   m_GameObject: {fileID: 1289862848}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.4409995, y: -0.251, z: -1.01}
+  m_LocalPosition: {x: 5.4409995, y: -0.251, z: -0.735}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6986,7 +6666,7 @@ Transform:
   m_GameObject: {fileID: 1519821255}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.163, y: -0.693, z: -0.842}
+  m_LocalPosition: {x: 5.163, y: -0.693, z: -0.371}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7261,7 +6941,7 @@ Transform:
   m_GameObject: {fileID: 1607024780}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.755, y: -0.887, z: -0.851}
+  m_LocalPosition: {x: 4.688, y: -0.887, z: -0.572}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7382,29 +7062,13 @@ GameObject:
   - component: {fileID: 1668455233}
   - component: {fileID: 1668455232}
   - component: {fileID: 1668455231}
-  - component: {fileID: 1668455230}
   m_Layer: 0
   m_Name: Soda (5)
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1668455230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668455229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Mango (1)
-  m_EditorClassIdentifier: 
-  category: 7
-  icon: {fileID: 1668455233}
-  targetZ: 0
 --- !u!54 &1668455231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7517,7 +7181,7 @@ Transform:
   m_GameObject: {fileID: 1668455229}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.476, y: -0.25, z: -1.108}
+  m_LocalPosition: {x: 6.476, y: -0.25, z: -0.783}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7721,7 +7385,7 @@ Transform:
   m_GameObject: {fileID: 1675875682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.02, y: 0, z: -1.14}
+  m_LocalPosition: {x: -0.39, y: -0.51, z: 2.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7859,7 +7523,7 @@ Transform:
   m_GameObject: {fileID: 1679912995}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.332, y: -0.687, z: -1.01}
+  m_LocalPosition: {x: 5.332, y: -0.687, z: -0.735}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8183,7 +7847,7 @@ Transform:
   m_GameObject: {fileID: 1750022095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.145, y: -0.6930001, z: -0.842}
+  m_LocalPosition: {x: 6.145, y: -0.6930001, z: -0.31799996}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8542,7 +8206,7 @@ Transform:
   m_GameObject: {fileID: 1846437660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.647, y: -0.251, z: -1.01}
+  m_LocalPosition: {x: 5.647, y: -0.251, z: -0.735}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8997,29 +8661,13 @@ GameObject:
   - component: {fileID: 1977160523}
   - component: {fileID: 1977160522}
   - component: {fileID: 1977160521}
-  - component: {fileID: 1977160520}
   m_Layer: 0
   m_Name: Soda
-  m_TagString: ClickableSprite
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1977160520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977160519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c69937bd18e44689f548f5c2c9caf, type: 3}
-  m_Name: Mango (1)
-  m_EditorClassIdentifier: 
-  category: 7
-  icon: {fileID: 1977160523}
-  targetZ: 0
 --- !u!54 &1977160521
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9132,7 +8780,7 @@ Transform:
   m_GameObject: {fileID: 1977160519}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.778, y: -0.6930001, z: -1.108}
+  m_LocalPosition: {x: 6.778, y: -0.6930001, z: -0.783}
   m_LocalScale: {x: 0.08899165, y: 0.08899166, z: 0.08899165}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9506,7 +9154,6 @@ SceneRoots:
   - {fileID: 1222246727}
   - {fileID: 1750022102}
   - {fileID: 565416808}
-  - {fileID: 97705600}
   - {fileID: 1159274091}
   - {fileID: 823228694}
   - {fileID: 546088107}
