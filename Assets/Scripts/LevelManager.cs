@@ -99,6 +99,7 @@ public class LevelManager : MonoBehaviour{
 			}
 			else{
 				SoundSys.PlaySound("happy_ending_abridged", false, 2);
+				EndGameButton.levelIdx = 0;
 				SceneSwitching.SwitchTo("Victory");
 			}
 		}, 1);
@@ -113,18 +114,18 @@ public class LevelManager : MonoBehaviour{
 	}
 
 	public void PauseBGM(){
-		BGM.audioSource.Pause();
-		Snoring.audioSource.Pause();
+		BGM?.audioSource?.Pause();
+		Snoring?.audioSource?.Pause();
 	}
 
 	public void ResumeBGM(){
-		BGM.audioSource.Play();
-		Snoring.audioSource.Play();
+		BGM?.audioSource?.Play();
+		Snoring?.audioSource?.Play();
     }
 
 	public void StopBGM(){
-		Destroy(BGM.gameObject);
-		Destroy(Snoring.gameObject);
+		Destroy(BGM?.gameObject);
+		Destroy(Snoring?.gameObject);
     }
 
 	public void setCursorGrab(){

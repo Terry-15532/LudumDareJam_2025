@@ -29,7 +29,7 @@ public class AlertnessBar : MonoBehaviour{
 
 	private void Start(){
 		startingColor = leftBar.color;
-		gameOver.GetComponent<Image>().color = Color.black;
+		// gameOver.GetComponent<Image>().color = Color.black;
 	}
 
 	void OnEnable(){
@@ -94,7 +94,7 @@ public class AlertnessBar : MonoBehaviour{
 		// Call your function here
 		LevelManager.instance.PauseBGM();
 		if (alertLevel < 3){
-			QTEsound = SoundSys.PlaySound("QTE", volume: 0.7f);
+			QTEsound = SoundSys.PlaySound("QTE", volume: 1f);
 			FindAnyObjectByType<QTEController>().startQTE();
 		}
 		else{
@@ -120,15 +120,14 @@ public class AlertnessBar : MonoBehaviour{
 		}
 
 		SoundSys.PlaySound("bad_ending_voice", false);
-		SoundSys.PlaySound("bad_ending", false, 2);
-		gameOver.SetActive(true);
-		gameOver.SetAttrAni(0, 1, 1f, ColorAttr.a);
+		SoundSys.PlaySound("bad_ending", false, 1);
+		// gameOver.SetActive(true);
+		// gameOver.SetAttrAni(0, 1, 1f, ColorAttr.a);
 		EndGameButton.levelIdx = LevelManager.instance.currLevel;
-		Tools.CallDelayed(() => { SceneSwitching.SwitchTo("GameOver"); }, 2f);
+		Tools.CallDelayed(() => { SceneSwitching.SwitchTo("GameOver"); }, 3f);
 	}
 
 	public void OnDestroy(){
-		LevelManager.instance.PauseBGM();
 		if (QTEsound){
 			Destroy(QTEsound.gameObject);
 		}

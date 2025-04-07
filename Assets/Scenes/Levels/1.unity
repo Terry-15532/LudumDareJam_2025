@@ -3926,7 +3926,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4200,7 +4200,7 @@ MonoBehaviour:
   - 75
   oscillationSpeed: 1.5
   collisionAddValue: 5
-  badEnding: {fileID: 903326212}
+  gameOver: {fileID: 903326212}
   head: {fileID: 1153119982}
   alertColor: {r: 0.9308176, g: 0.28978276, b: 0.28978276, a: 1}
 --- !u!1 &863346065

@@ -125,19 +125,19 @@ public static class Tools{
 
 	public static async void CallDelayedAsync(Action a, float t, CancellationTokenSource cancel = null){
 		try{
-#if WEBGL
-            CallDelayedUnscaled(a, t);
-            return;
-#else
-			if (cancel != null){
-				await Task.Delay((int)(t * 1000), cancel.Token);
-			}
-			else{
-				await Task.Delay((int)(t * 1000));
-			}
-
-			a.Invoke();
-#endif
+// #if WEBGL
+			CallDelayedUnscaled(a, t);
+			return;
+// #else
+// 			if (cancel != null){
+// 				await Task.Delay((int)(t * 1000), cancel.Token);
+// 			}
+// 			else{
+// 				await Task.Delay((int)(t * 1000));
+// 			}
+//
+// 			a.Invoke();
+// #endif
 		}
 		catch{ }
 	}
@@ -267,12 +267,11 @@ public static class floatHelper{
 		return a + (b - a) * percent;
 	}
 
-	public static float invLerp(this float a, float b, float t)
-	{
-		if (a == b)
-		{
+	public static float invLerp(this float a, float b, float t){
+		if (a == b){
 			return 0f;
 		}
+
 		return (t - a) / (b - a);
 	}
 }

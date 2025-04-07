@@ -4,7 +4,12 @@ public class EndGameButton : Button{
 	public static int levelIdx = 1;
 	
 	public void EndGame(){
-		SceneSwitching.SwitchTo(levelIdx.ToString());
+		if (levelIdx > 0){
+			SceneSwitching.SwitchTo(levelIdx.ToString());
+		}
+		else{
+			SceneSwitching.SwitchTo("MainMenu");
+		}
 	}
 	
 	public override void OnMouseEnter(){

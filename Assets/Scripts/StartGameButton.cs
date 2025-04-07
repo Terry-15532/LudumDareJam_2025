@@ -53,11 +53,14 @@ public class StartGameButton : Button{
 
 
 	public void StartGame(){
-		if (firstTime){
+		if (firstTime && Application.platform != RuntimePlatform.WebGLPlayer){
 			StartCoroutine(WaitThenStart());
 		}
 		else{
-			Tools.CallDelayed(() => { SceneSwitching.SwitchTo("1"); }, 0.6f);
+			Tools.CallDelayed(() => {
+				SoundSys.PlaySound("eat_short");
+				SceneSwitching.SwitchTo("1");
+			}, 0.6f);
 		}
 	}
 
