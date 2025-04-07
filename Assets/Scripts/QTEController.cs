@@ -16,6 +16,7 @@ public class QTEController : MonoBehaviour{
 	private int currentSuccess;
 	private bool started = false;
 	private bool ringStarted = false;
+	private int voicelineSeed = 0;
 	public UIRing ring1;
 	public UIRing ring2;
 	public Animator textboxAnimator;
@@ -34,7 +35,9 @@ public class QTEController : MonoBehaviour{
 
 		ringStarted = true;
 		transform.Find("QTE Parent").gameObject.SetActive(true);
-		ring1.setRadius(500);
+		ring1.GetComponent<RingPulse>().Init();
+        ring2.GetComponent<RingPulse>().Init();
+        ring1.setRadius(500);
 		ring2.setRadius(1000);
 		currentSuccess = 0;
 		ring1.GetComponent<RingPulse>().Activate();
@@ -59,7 +62,9 @@ public class QTEController : MonoBehaviour{
 
 			//Debug.Log("pulse left: " + pulseLeft + "; gracePeriod: " + gracePeriod);
 			if (pulseLeft == 0 && gracePeriodSpacebar <= 0 && gracePeriodBeat <= 0){
-				started = false;
+                ring1.GetComponent<RingPulse>().StopAll();
+                ring2.GetComponent<RingPulse>().StopAll();
+                started = false;
                 ringStarted = false;
                 FindFirstObjectByType<AlertnessBar>().GameOver();
 			}
@@ -113,7 +118,9 @@ public class QTEController : MonoBehaviour{
             QTEVFX.Create(QTERanking.Good);
         }
         if (currentSuccess >= 3){
-			transform.Find("QTE Parent").gameObject.SetActive(false);
+            ring1.GetComponent<RingPulse>().StopAll();
+            ring2.GetComponent<RingPulse>().StopAll();
+            transform.Find("QTE Parent").gameObject.SetActive(false);
             transform.Find("Fade").gameObject.SetActive(false);
             started = false;
 			ringStarted = false;
@@ -132,15 +139,17 @@ public class QTEController : MonoBehaviour{
 
 	private void playRandomVoiceline()
 	{
-		int rVal = UnityEngine.Random.Range(1, 2);
-		if (rVal == 1)
-		{
-			SoundSys.PlaySound("what_the_hell_denoised");
-			textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What the hell?";
-		}else if (rVal == 2)
-		{
-			SoundSys.PlaySound("whats_that");
-            textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What's that?";
-        }
-	}
+        SoundSys.PlaySound("what_the_hell_denoised");
+        textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What the hell?";
+        //if (voicelineSeed % 2 == 0)
+        //{
+        //	SoundSys.PlaySound("what_the_hell_denoised");
+        //	textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What the hell?";
+        //}else
+        //{
+        //	SoundSys.PlaySound("whats_that");
+        //          textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What's that?";
+        //      }
+        //voicelineSeed++;
+    }
 }

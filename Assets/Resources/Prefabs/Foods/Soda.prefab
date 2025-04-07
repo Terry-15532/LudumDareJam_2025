@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0a7fc233372632469cf60f976cb232f, type: 2}
+  - {fileID: 2100000, guid: 11e8b6b5087ec0d4da6381003a963103, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -153,22 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: 1
   icon: {fileID: 0}
-  moveUpDistance: 0.2
-  moveUpDuration: 0.2
-  maxSpeed: 5
-  zMoveSpeed: 1
-  sensitivity: 10
-  destroyDistance: 1
-  knockbackDistance: 0.5
-  knockbackDuration: 0.5
-  flashCount: 3
-  flashInterval: 0.5
-  posMax: {x: 7, y: 1}
-  posMin: {x: 4.5, y: 0.4}
-  mode: 0
   targetZ: 0
-  noiseAmplitude: 0
-  noiseFrequency: 0
 --- !u!1 &7782221444736065394
 GameObject:
   m_ObjectHideFlags: 0

@@ -102,17 +102,21 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EdgeIntensity: 0
+    - _EdgeSharpness: 10
+    - _EdgeStrength: 70
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseStrength: 0.3
+    - _NoiseScale: 30
+    - _NoiseSpeed: 0
+    - _NoiseStrength: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 300
+    - _Scale: 2000
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

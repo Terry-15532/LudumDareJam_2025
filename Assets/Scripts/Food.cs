@@ -59,25 +59,37 @@ public class FoodEditor : Editor{
 			serializedObject.ApplyModifiedProperties();
 
 			if (food.category != previousCategory){
-				ReplaceWithPrefab(food.category);
+				ReplaceWithPrefab(food, food.category);
 				return;
 			}
 		}
 
 		if (GUILayout.Button("转换为障碍")){
 			food.gameObject.tag = "Obstacle";
-			var colliders = food.GetComponentsInChildren<BoxCollider>();
-			foreach (var c in colliders){
-				c.isTrigger = true;
-			}
+			// var colliders = food.GetComponentsInChildren<BoxCollider>();
+			// foreach (var c in colliders){
+			// 	c.isTrigger = true;
+			// }
 
 			DestroyImmediate(food);
 		}
 
-		DrawDefaultInspector();
+		if (GUILayout.Button("从Prefab刷新场景中所有食物")){
+			foreach (var f in GameObject.FindObjectsByType<Food>(FindObjectsInactive.Include, FindObjectsSortMode.None)){
+				if (f != food){
+					ReplaceWithPrefab(f, f.category);
+				}
+			}
+
+			ReplaceWithPrefab(food, food.category);
+		}
+
+		if (target){
+			DrawDefaultInspector();
+		}
 	}
 
-	private void ReplaceWithPrefab(FoodCategory category){
+	private void ReplaceWithPrefab(Food f, FoodCategory category){
 		Food prefab = Resources.Load<Food>("Prefabs/Foods/" + category.ToString());
 
 		if (prefab == null){
@@ -85,7 +97,7 @@ public class FoodEditor : Editor{
 			return;
 		}
 
-		GameObject oldFood = food.gameObject;
+		GameObject oldFood = f.gameObject;
 		Vector3 pos = oldFood.transform.position;
 		Quaternion rot = oldFood.transform.rotation;
 		Transform parent = oldFood.transform.parent;
@@ -127,7 +139,7 @@ public class FoodEditor : Editor{
 
 public class Food : MonoBehaviour{
 	[HideInInspector] public FoodCategory category;
-	[Space] public SpriteRenderer icon;
+	[HideInInspector] public SpriteRenderer icon;
 
 	public static readonly Color[] outlineColors = new[]{
 		new Color(0.8f, 0.7f, 0.1f), // Lemon
@@ -164,8 +176,12 @@ public class Food : MonoBehaviour{
 	private float knockbackDuration => LevelManager.instance.knockbackDuration;
 	private int flashCount => LevelManager.instance.flashCount;
 	private float flashInterval => LevelManager.instance.flashInterval;
-	private float noiseAmplitude => LevelManager.instance.noiseAmplitude;
-	private float noiseFrequency => LevelManager.instance.noiseFrequency;
+	private float baseAmplitude => LevelManager.instance.noiseAmplitude;
+	private float noiseAmplitude;
+	private float baseFrequency => LevelManager.instance.noiseFrequency;
+	private float noiseFrequency;
+	private float noiseFrequencyMultiplier => LevelManager.instance.noiseFrequencyMultiplier;
+	private float noiseAmplitudeMultiplier => LevelManager.instance.noiseAmplitudeMultiplier;
 
 
 	public static int emissionID = Shader.PropertyToID("_Emission");
@@ -175,15 +191,13 @@ public class Food : MonoBehaviour{
 	private QTEController qte;
 	private SpriteRenderer sr;
 
-	[SerializeField] private MovementMode mode;
+	// [SerializeField] private MovementMode mode;
 
 	private Vector3 targetPos;
-	public float targetZ;
+	[HideInInspector] public float targetZ;
 
 
-
-
-    void Start(){
+	void Start(){
 		icon = GetComponentInChildren<SpriteRenderer>();
 		icon.sprite = ResourceManager.Load<Sprite>("Sprites/FoodIcons/" + category.ToString());
 		qte = LevelManager.instance.qteController;
@@ -192,6 +206,8 @@ public class Food : MonoBehaviour{
 		sr.material.SetFloat(emissionID, 1);
 		targetPos = transform.position;
 		targetZ = transform.position.z;
+		noiseAmplitude = baseAmplitude;
+		noiseFrequency = baseFrequency;
 	}
 
 
@@ -209,27 +225,37 @@ public class Food : MonoBehaviour{
 			delta = delta.normalized * Mathf.Clamp(delta.magnitude, 0, maxSpeed * Time.deltaTime);
 
 			targetPos += delta;
-
-			Vector3 noise = GetNoise(noiseAmplitude);
-
-			transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
-
 			var posMin = LevelManager.instance.posMin;
 			var posMax = LevelManager.instance.posMax;
 
-			transform.position = new Vector3(Mathf.Clamp(transform.position.x, posMin.x, posMax.x),
-				Mathf.Clamp(transform.position.y, posMin.y, posMax.y), transform.position.z);
+			targetPos = new Vector3(Mathf.Clamp(targetPos.x, posMin.x, posMax.x),
+				Mathf.Clamp(targetPos.y, posMin.y, posMax.y), targetPos.z);
+
+			var heightPercent = posMin.y.Lerp(posMax.y, 0.5f).invLerp(posMax.y, targetPos.y);
+
+			noiseAmplitude = baseAmplitude * Mathf.Max(heightPercent * noiseAmplitudeMultiplier, 1);
+			noiseFrequency = baseFrequency * Mathf.Max(heightPercent * noiseFrequencyMultiplier, 1);
+
+			Vector3 noise = GetNoise(noiseAmplitude);
+
+
+			transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
+
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x, posMin.x - 0.2f, posMax.x + 0.2f),
+				Mathf.Clamp(transform.position.y, posMin.y - 0.1f, posMax.y + 0.1f), transform.position.z);
+
 
 			float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
 			if (distanceToCamera < destroyDistance){
 				OnReachCamera();
-            }
-        }
-    }
-    public void OnClick(){
+			}
+		}
+	}
+
+	public void OnClick(){
 		selected = true;
 		LevelManager.instance.setCursorGrab();
-        StartCoroutine(MoveUpSmoothly());
+		StartCoroutine(MoveUpSmoothly());
 		sr.material.SetFloat(emissionID, 3.5f);
 	}
 
@@ -253,12 +279,12 @@ public class Food : MonoBehaviour{
 		Camera.main.GetComponent<Click>().StopControlling();
 		LevelManager.OnFoodReached(this);
 		SoundSys.PlaySound("eat_short");
-        LevelManager.instance.setCursorNormal();
-        Destroy(gameObject);
+		LevelManager.instance.setCursorNormal();
+		Destroy(gameObject);
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.CompareTag("ClickableSprite") || other.CompareTag("Obstacle")){
+		if (controlling && (other.CompareTag("ClickableSprite") || other.CompareTag("Obstacle"))){
 			Debug.Log("Collided with " + other.tag);
 			OnReachObstacle();
 			OnCollisionEvent?.Invoke(this);

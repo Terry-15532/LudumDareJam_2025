@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AlertnessBar : MonoBehaviour
@@ -21,9 +23,13 @@ public class AlertnessBar : MonoBehaviour
     public Image head;
     public Color alertColor;
 
+    private float swingAngle = 20f;  // Max angle from center
+    private float swingSpeed = 2f;   // How fast it swings
+
     private void Start()
     {
         startingColor = leftBar.color;
+        badEnding.GetComponent<Image>().color = Color.black;
     }
 
     void OnEnable()
@@ -52,6 +58,10 @@ public class AlertnessBar : MonoBehaviour
             FreezeBar();
         else if (alertLevel == 3 && currentValue >= QTEthresholds[2])
             FreezeBar();
+
+        // Swing head
+        float angle = Mathf.Sin(Time.time * swingSpeed) * swingAngle;
+        head.GetComponent<Transform>().rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     public void TriggerEvent(Food food)
@@ -93,7 +103,7 @@ public class AlertnessBar : MonoBehaviour
         LevelManager.instance.PauseBGM();
         if (alertLevel < 3)
         {
-            QTEsound = SoundSys.PlaySound("QTE", true, 0, false, volume: 0.7f);
+            QTEsound = SoundSys.PlaySound("QTE", volume: 0.7f);
             FindAnyObjectByType<QTEController>().startQTE();
         }
         else
@@ -115,9 +125,19 @@ public class AlertnessBar : MonoBehaviour
 
     public void GameOver()
     {
-        LevelManager.instance.StopBGM();
-        SoundSys.PlaySound("BadEnding", false, 2);
-        badEnding.SetActive(true);
         Debug.Log("Game Over");
+        LevelManager.instance.StopBGM();
+        Destroy(QTEsound.gameObject);
+        SoundSys.PlaySound("bad_ending_voice", false);
+        SoundSys.PlaySound("bad_ending", false, 2);
+        badEnding.SetActive(true);
+        StartCoroutine(DelayedLoadGameOver());
+        
+    }
+
+    IEnumerator DelayedLoadGameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(4);
     }
 }
