@@ -59,25 +59,37 @@ public class FoodEditor : Editor{
 			serializedObject.ApplyModifiedProperties();
 
 			if (food.category != previousCategory){
-				ReplaceWithPrefab(food.category);
+				ReplaceWithPrefab(food, food.category);
 				return;
 			}
 		}
 
 		if (GUILayout.Button("转换为障碍")){
 			food.gameObject.tag = "Obstacle";
-			var colliders = food.GetComponentsInChildren<BoxCollider>();
-			foreach (var c in colliders){
-				c.isTrigger = true;
-			}
+			// var colliders = food.GetComponentsInChildren<BoxCollider>();
+			// foreach (var c in colliders){
+			// 	c.isTrigger = true;
+			// }
 
 			DestroyImmediate(food);
 		}
 
-		DrawDefaultInspector();
+		if (GUILayout.Button("从Prefab刷新场景中所有食物")){
+			foreach (var f in GameObject.FindObjectsByType<Food>(FindObjectsInactive.Include, FindObjectsSortMode.None)){
+				if (f != food){
+					ReplaceWithPrefab(f, f.category);
+				}
+			}
+
+			ReplaceWithPrefab(food, food.category);
+		}
+
+		if (target){
+			DrawDefaultInspector();
+		}
 	}
 
-	private void ReplaceWithPrefab(FoodCategory category){
+	private void ReplaceWithPrefab(Food f, FoodCategory category){
 		Food prefab = Resources.Load<Food>("Prefabs/Foods/" + category.ToString());
 
 		if (prefab == null){
@@ -85,7 +97,7 @@ public class FoodEditor : Editor{
 			return;
 		}
 
-		GameObject oldFood = food.gameObject;
+		GameObject oldFood = f.gameObject;
 		Vector3 pos = oldFood.transform.position;
 		Quaternion rot = oldFood.transform.rotation;
 		Transform parent = oldFood.transform.parent;
@@ -127,7 +139,7 @@ public class FoodEditor : Editor{
 
 public class Food : MonoBehaviour{
 	[HideInInspector] public FoodCategory category;
-	[Space] public SpriteRenderer icon;
+	[HideInInspector] public SpriteRenderer icon;
 
 	public static readonly Color[] outlineColors = new[]{
 		new Color(0.8f, 0.7f, 0.1f), // Lemon
@@ -179,10 +191,10 @@ public class Food : MonoBehaviour{
 	private QTEController qte;
 	private SpriteRenderer sr;
 
-	[SerializeField] private MovementMode mode;
+	// [SerializeField] private MovementMode mode;
 
 	private Vector3 targetPos;
-	public float targetZ;
+	[HideInInspector] public float targetZ;
 
 
 	void Start(){
