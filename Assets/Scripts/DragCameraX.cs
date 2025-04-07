@@ -34,7 +34,7 @@ public class DragCameraX : MonoBehaviour
 		if (isDragging)
 		{
 			Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
-			float deltaX = mouseDelta.x * dragSpeed * 0.01f;
+			float deltaX = mouseDelta.x * dragSpeed * -Time.deltaTime;
 
 			targetX = Mathf.Clamp(targetX + deltaX, initialPosition.x + minX, initialPosition.x + maxX);
 			lastMousePosition = Input.mousePosition;
