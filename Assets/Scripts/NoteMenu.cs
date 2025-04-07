@@ -90,17 +90,20 @@ public class NoteMenu : CustomUIElement, IPointerEnterHandler, IPointerExitHandl
 
 		Show();
 
-		Tools.CallDelayed(() => {
-			item.SetPositionAni((Vector2)item.position + new Vector2(20, 0), 0.3f);
-
-			Tools.CallDelayed(() => { item.SetPositionAni((Vector2)item.position + new Vector2(-500, 0), 0.5f); }, 0.3f);
-
+		try{
 			Tools.CallDelayed(() => {
-				Destroy(item.gameObject);
-				UpdateItems();
-				Fold();
-			}, 1f);
-		}, 0.5f);
+				item.SetPositionAni((Vector2)item.position + new Vector2(20, 0), 0.3f);
+
+				Tools.CallDelayed(() => { item.SetPositionAni((Vector2)item.position + new Vector2(-500, 0), 0.5f); }, 0.3f);
+
+				Tools.CallDelayed(() => {
+					Destroy(item.gameObject);
+					UpdateItems();
+					Fold();
+				}, 1f);
+			}, 0.5f);
+		}
+		finally{ }
 	}
 
 	public void UpdateItems(){

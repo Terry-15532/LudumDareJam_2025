@@ -266,6 +266,15 @@ public static class floatHelper{
 	public static float Lerp(this float a, float b, float percent){
 		return a + (b - a) * percent;
 	}
+
+	public static float invLerp(this float a, float b, float t)
+	{
+		if (a == b)
+		{
+			return 0f;
+		}
+		return (t - a) / (b - a);
+	}
 }
 
 //public class WaitForSecondsUnscaled : CustomYieldInstruction {

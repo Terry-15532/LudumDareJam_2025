@@ -1322,7 +1322,7 @@ Transform:
   m_GameObject: {fileID: 406397071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.0200024, y: -0.4666666, z: 0.9666665}
+  m_LocalPosition: {x: -6.0200024, y: 0.08, z: 0.9666665}
   m_LocalScale: {x: 0.8666666, y: 0.8666666, z: 0.8666666}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3437,9 +3437,8 @@ MonoBehaviour:
   foods: 000000000100000009000000
   counts: 010000000200000001000000
   inOrder: 0
-  maxTime: 10
   noteMenu: {fileID: 1522127437}
-  posMax: {x: 7, y: 1}
+  posMax: {x: 6.7, y: 1}
   posMin: {x: 4.5, y: 0.3}
   moveUpDistance: 0.2
   moveUpDuration: 0.2
@@ -3451,8 +3450,10 @@ MonoBehaviour:
   knockbackDuration: 0.5
   flashCount: 3
   flashInterval: 0.3
-  noiseAmplitude: 0.3
-  noiseFrequency: 1.5
+  noiseAmplitude: 0.2
+  noiseFrequency: 2
+  noiseAmplitudeMultiplier: 1.5
+  noiseFrequencyMultiplier: 3
   qteController: {fileID: 566908437}
   defaultCursorTexture: {fileID: 2800000, guid: 2de5668decbadfb478ba02fa0694f499,
     type: 3}
