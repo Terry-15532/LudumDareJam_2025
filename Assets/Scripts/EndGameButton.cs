@@ -1,8 +1,10 @@
 using UnityEngine;
 
 public class EndGameButton : Button{
+	public static int levelIdx = 1;
+	
 	public void EndGame(){
-		SceneSwitching.SwitchTo("MainMenu");
+		SceneSwitching.SwitchTo(levelIdx.ToString());
 	}
 	
 	public override void OnMouseEnter(){

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AlertnessBar : MonoBehaviour{
@@ -18,7 +19,7 @@ public class AlertnessBar : MonoBehaviour{
 	private bool frozen = false;
 
 	private Color startingColor;
-	public GameObject badEnding;
+	[FormerlySerializedAs("badEnding")] public CustomUIElement gameOver;
 	private Sound QTEsound;
 	public Image head;
 	public Color alertColor;
@@ -28,7 +29,7 @@ public class AlertnessBar : MonoBehaviour{
 
 	private void Start(){
 		startingColor = leftBar.color;
-		badEnding.GetComponent<Image>().color = Color.black;
+		gameOver.GetComponent<Image>().color = Color.black;
 	}
 
 	void OnEnable(){
@@ -120,8 +121,10 @@ public class AlertnessBar : MonoBehaviour{
 
 		SoundSys.PlaySound("bad_ending_voice", false);
 		SoundSys.PlaySound("bad_ending", false, 2);
-		badEnding.SetActive(true);
-		StartCoroutine(DelayedLoadGameOver());
+		gameOver.SetActive(true);
+		gameOver.SetAttrAni(0, 1, 1f, ColorAttr.a);
+		EndGameButton.levelIdx = LevelManager.instance.currLevel;
+		Tools.CallDelayed(() => { SceneSwitching.SwitchTo("GameOver"); }, 2f);
 	}
 
 	public void OnDestroy(){
@@ -129,11 +132,5 @@ public class AlertnessBar : MonoBehaviour{
 		if (QTEsound){
 			Destroy(QTEsound.gameObject);
 		}
-
-	}
-
-	IEnumerator DelayedLoadGameOver(){
-		yield return new WaitForSeconds(2f);
-		SceneManager.LoadScene(4);
 	}
 }
