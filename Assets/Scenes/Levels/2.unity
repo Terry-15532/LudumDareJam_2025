@@ -7084,22 +7084,22 @@ PrefabInstance:
     - target: {fileID: 763946314049351443, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 763946314049351443, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 763946314049351443, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 763946314049351443, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 763946314049351443, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
@@ -7176,11 +7176,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: QTE Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 1360863331880193166, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: shrinkSpeed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400282160475952973, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400282160475952973, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400282160475952973, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400282160475952973, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4750605718883326506, guid: 869c3b73650b007469c25bed6e31da85,
         type: 3}
       propertyPath: textboxAnimator
       value: 
       objectReference: {fileID: 158196627}
+    - target: {fileID: 6997569112850966680, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: shrinkSpeed
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8825,7 +8855,7 @@ MonoBehaviour:
   defaultCursorTexture: {fileID: 2800000, guid: 2de5668decbadfb478ba02fa0694f499,
     type: 3}
   grabCursorTexture: {fileID: 2800000, guid: b83deaf2b58ff604fbf6b43613131d79, type: 3}
-  hotSpot: {x: 250, y: 250}
+  hotSpot: {x: 16, y: 16}
   cursorMode: 0
 --- !u!4 &1267828462
 Transform:

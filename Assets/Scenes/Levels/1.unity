@@ -6264,7 +6264,7 @@ MonoBehaviour:
   defaultCursorTexture: {fileID: 2800000, guid: 2de5668decbadfb478ba02fa0694f499,
     type: 3}
   grabCursorTexture: {fileID: 2800000, guid: b83deaf2b58ff604fbf6b43613131d79, type: 3}
-  hotSpot: {x: 250, y: 250}
+  hotSpot: {x: 16, y: 16}
   cursorMode: 0
 --- !u!4 &1267828462
 Transform:
@@ -10675,8 +10675,8 @@ RectTransform:
   - {fileID: 2332952832071883027}
   m_Father: {fileID: 1849301515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10713,7 +10713,7 @@ MonoBehaviour:
   controller: {fileID: 4750605718361851301}
   maxRadius: 1000
   minRadius: 80
-  shrinkSpeed: 200
+  shrinkSpeed: 300
   pulseDuration: 0.4
   scaleMultiplier: 1.2
 --- !u!114 &1763782814196141380
@@ -10897,7 +10897,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1600, y: 900}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4750605718361851301
 MonoBehaviour:
@@ -11007,7 +11007,7 @@ MonoBehaviour:
   controller: {fileID: 4750605718361851301}
   maxRadius: 1000
   minRadius: 80
-  shrinkSpeed: 200
+  shrinkSpeed: 300
   pulseDuration: 0.4
   scaleMultiplier: 1.2
 --- !u!222 &7254766585649888945
