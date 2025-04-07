@@ -111,7 +111,7 @@ public class LevelManager : MonoBehaviour{
 	}
 
 	public void StopBGM(){
-		Destroy(BGM);
+		Destroy(BGM.gameObject);
 	}
 
 	public void setCursorGrab(){

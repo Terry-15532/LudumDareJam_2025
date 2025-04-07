@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AlertnessBar : MonoBehaviour
@@ -24,6 +26,7 @@ public class AlertnessBar : MonoBehaviour
     private void Start()
     {
         startingColor = leftBar.color;
+        badEnding.GetComponent<Image>().color = Color.black;
     }
 
     void OnEnable()
@@ -115,9 +118,19 @@ public class AlertnessBar : MonoBehaviour
 
     public void GameOver()
     {
-        LevelManager.instance.StopBGM();
-        SoundSys.PlaySound("BadEnding", false, 2);
-        badEnding.SetActive(true);
         Debug.Log("Game Over");
+        LevelManager.instance.StopBGM();
+        Destroy(QTEsound.gameObject);
+        SoundSys.PlaySound("bad_ending_voice", false);
+        SoundSys.PlaySound("bad_ending", false, 2);
+        badEnding.SetActive(true);
+        StartCoroutine(DelayedLoadGameOver());
+        
+    }
+
+    IEnumerator DelayedLoadGameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(4);
     }
 }

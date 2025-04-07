@@ -15,6 +15,7 @@ public class StartGame : MonoBehaviour
     public GameObject fade;
     public GameObject intro;
     public VideoPlayer introPlayer;
+    public bool firstTime;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,14 @@ public class StartGame : MonoBehaviour
         // var seq = DOTween.Sequence();
         // seq.AppendInterval(1f);
         // seq.Append(cutscene.tween);
-        StartCoroutine(WaitThenStart());
+        if (firstTime)
+        {
+            StartCoroutine(WaitThenStart());
+        }
+        else
+        {
+            StartCoroutine(NormalStart());
+        }
     }
 
     public void ExitGame()
@@ -71,6 +79,13 @@ public class StartGame : MonoBehaviour
         //fade2.Play("FadeOut");
         //yield return new WaitForSeconds(0.5f);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
+    }
+
+    IEnumerator NormalStart()
+    {
+        fade.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        SceneManager.LoadScene(0);
     }
 }
