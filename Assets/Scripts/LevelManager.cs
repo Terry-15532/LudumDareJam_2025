@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour{
 	[Header("其他设置")]
 	public QTEController qteController;
 	private static Sound BGM;
+	private static Sound Snoring;
 
 	public Texture2D defaultCursorTexture;
 	public Texture2D grabCursorTexture;
@@ -68,7 +69,11 @@ public class LevelManager : MonoBehaviour{
 		if (BGM == null){
 			BGM = SoundSys.PlaySound("BGM", true);
 		}
-	}
+        if (Snoring == null)
+        {
+			Snoring = SoundSys.PlaySound("male_snoring_new", true, volume: 0.35f);
+        }
+    }
 
 	public void InitNoteMenu(){
 		noteMenu.inOrder = inOrder;
@@ -104,15 +109,18 @@ public class LevelManager : MonoBehaviour{
 
 	public void PauseBGM(){
 		BGM.audioSource.Pause();
+		Snoring.audioSource.Pause();
 	}
 
 	public void ResumeBGM(){
 		BGM.audioSource.Play();
-	}
+		Snoring.audioSource.Play();
+    }
 
 	public void StopBGM(){
 		Destroy(BGM.gameObject);
-	}
+		Destroy(Snoring.gameObject);
+    }
 
 	public void setCursorGrab(){
 		Cursor.SetCursor(grabCursorTexture, hotSpot, cursorMode);

@@ -16,6 +16,7 @@ public class QTEController : MonoBehaviour{
 	private int currentSuccess;
 	private bool started = false;
 	private bool ringStarted = false;
+	private int voicelineSeed = 0;
 	public UIRing ring1;
 	public UIRing ring2;
 	public Animator textboxAnimator;
@@ -138,15 +139,17 @@ public class QTEController : MonoBehaviour{
 
 	private void playRandomVoiceline()
 	{
-		int rVal = UnityEngine.Random.Range(1, 2);
-		if (rVal == 1)
-		{
-			SoundSys.PlaySound("what_the_hell_denoised");
-			textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What the hell?";
-		}else if (rVal == 2)
-		{
-			SoundSys.PlaySound("whats_that");
-            textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What's that?";
-        }
-	}
+        SoundSys.PlaySound("what_the_hell_denoised");
+        textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What the hell?";
+        //if (voicelineSeed % 2 == 0)
+        //{
+        //	SoundSys.PlaySound("what_the_hell_denoised");
+        //	textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What the hell?";
+        //}else
+        //{
+        //	SoundSys.PlaySound("whats_that");
+        //          textboxAnimator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "What's that?";
+        //      }
+        //voicelineSeed++;
+    }
 }
