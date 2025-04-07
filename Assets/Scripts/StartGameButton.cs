@@ -60,7 +60,7 @@ public class StartGameButton : Button{
 
 
 	public void StartGame(){
-		if (firstTime && Application.platform != RuntimePlatform.WebGLPlayer){
+		if (firstTime /*&& Application.platform != RuntimePlatform.WebGLPlayer*/){
 			StartCoroutine(WaitThenStart());
 		}
 		else{

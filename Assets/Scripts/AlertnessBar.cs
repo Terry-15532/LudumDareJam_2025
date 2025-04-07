@@ -79,6 +79,11 @@ public class AlertnessBar : MonoBehaviour{
 		}
 	}
 
+	public void FreezeBarSuccess()
+	{
+		frozen = true;
+	}
+
 	void FreezeBar(){
 		frozen = true;
 		leftBar.color = alertColor;

@@ -92,13 +92,15 @@ public class LevelManager : MonoBehaviour{
 
 	public static void ToNextLevel(){
 		Debug.Log("Level Complete!");
+		FindFirstObjectByType<AlertnessBar>().FreezeBarSuccess();
 		Tools.CallDelayed(() => {
 			if (!instance.isLastLevel){
 				SoundSys.PlaySound("eat_long").SetVolumeSmooth(0, 2.5f);
 				SceneSwitching.SwitchTo((instance.currLevel + 1).ToString(), time1: 2.5f);
 			}
 			else{
-				SoundSys.PlaySound("happy_ending_abridged", false, 2);
+				instance.PauseBGM();
+				SoundSys.PlaySound("happy_ending_abridged", false, 0.5f);
 				EndGameButton.levelIdx = 0;
 				SceneSwitching.SwitchTo("Victory");
 			}
