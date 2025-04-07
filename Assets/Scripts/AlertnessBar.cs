@@ -23,6 +23,9 @@ public class AlertnessBar : MonoBehaviour
     public Image head;
     public Color alertColor;
 
+    private float swingAngle = 20f;  // Max angle from center
+    private float swingSpeed = 2f;   // How fast it swings
+
     private void Start()
     {
         startingColor = leftBar.color;
@@ -55,6 +58,10 @@ public class AlertnessBar : MonoBehaviour
             FreezeBar();
         else if (alertLevel == 3 && currentValue >= QTEthresholds[2])
             FreezeBar();
+
+        // Swing head
+        float angle = Mathf.Sin(Time.time * swingSpeed) * swingAngle;
+        head.GetComponent<Transform>().rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     public void TriggerEvent(Food food)
