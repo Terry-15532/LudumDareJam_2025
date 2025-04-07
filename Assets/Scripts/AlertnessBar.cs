@@ -125,7 +125,7 @@ public class AlertnessBar : MonoBehaviour{
 	}
 
 	public void OnDestroy(){
-		LevelManager.instance.StopBGM();
+		LevelManager.instance.PauseBGM();
 		if (QTEsound){
 			Destroy(QTEsound.gameObject);
 		}

@@ -62,11 +62,11 @@ public class QTEController : MonoBehaviour{
 
 			//Debug.Log("pulse left: " + pulseLeft + "; gracePeriod: " + gracePeriod);
 			if (pulseLeft == 0 && gracePeriodSpacebar <= 0 && gracePeriodBeat <= 0){
-                ring1.GetComponent<RingPulse>().StopAll();
-                ring2.GetComponent<RingPulse>().StopAll();
                 started = false;
                 ringStarted = false;
                 FindFirstObjectByType<AlertnessBar>().GameOver();
+                ring1.GetComponent<RingPulse>().StopAll();
+                ring2.GetComponent<RingPulse>().StopAll();
 			}
 		}
 	}
@@ -118,13 +118,13 @@ public class QTEController : MonoBehaviour{
             QTEVFX.Create(QTERanking.Good);
         }
         if (currentSuccess >= 3){
-            ring1.GetComponent<RingPulse>().StopAll();
-            ring2.GetComponent<RingPulse>().StopAll();
             transform.Find("QTE Parent").gameObject.SetActive(false);
             transform.Find("Fade").gameObject.SetActive(false);
             started = false;
 			ringStarted = false;
 			FindFirstObjectByType<AlertnessBar>().UnfreezeBar();
+            ring1.GetComponent<RingPulse>().StopAll();
+            ring2.GetComponent<RingPulse>().StopAll();
         }
 	}
 

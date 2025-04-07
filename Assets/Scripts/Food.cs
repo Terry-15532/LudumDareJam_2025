@@ -241,7 +241,7 @@ public class Food : MonoBehaviour{
 
 			transform.position = Vector3.Lerp(transform.position, targetPos + noise, 3 * Time.deltaTime);
 
-			transform.position = new Vector3(Mathf.Clamp(transform.position.x, posMin.x - 0.2f, posMax.x + 0.2f),
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x, posMin.x - 0.1f, posMax.x + 0.1f),
 				Mathf.Clamp(transform.position.y, posMin.y - 0.1f, posMax.y + 0.1f), transform.position.z);
 
 

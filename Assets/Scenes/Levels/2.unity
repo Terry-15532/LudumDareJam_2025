@@ -4622,6 +4622,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: QTE Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 4750605718883326506, guid: 869c3b73650b007469c25bed6e31da85,
+        type: 3}
+      propertyPath: textboxAnimator
+      value: 
+      objectReference: {fileID: 158196627}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

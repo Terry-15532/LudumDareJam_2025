@@ -26,11 +26,8 @@ public class RingPulse : MonoBehaviour{
 		}
 		else if (!deactivated){
 			controller.BeatHit();
-			if (gameObject.activeSelf){
-				try{
-					StartCoroutine(ScalePulse());
-				}
-				finally{ }
+			if (this){
+				StartCoroutine(ScalePulse());
 			}
 
 			if (controller.pulseLeft > 1){

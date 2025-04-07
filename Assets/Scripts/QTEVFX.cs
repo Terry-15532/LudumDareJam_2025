@@ -17,7 +17,7 @@ public class QTEVFX : MonoBehaviour{
 		foreach (var p in particles){
 			main = p.main;
 			if (rank == QTERanking.Perfect){
-				main.startColor = new Color(0.95f, 0.8f, 0.2f);
+				main.startColor = new Color(0.95f, 0.7f, 0.2f);
 			}
 			else if (rank == QTERanking.Good){
 				main.startColor = new Color(0.4f, 0.7f, 0.9f);
