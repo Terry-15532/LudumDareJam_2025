@@ -134,6 +134,6 @@ public class AlertnessBar : MonoBehaviour{
 
 	IEnumerator DelayedLoadGameOver(){
 		yield return new WaitForSeconds(2f);
-		SceneManager.LoadScene(4);
-	}
+        SceneSwitching.SwitchTo("GameOver");
+    }
 }
