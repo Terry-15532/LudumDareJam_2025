@@ -94,7 +94,8 @@ public class LevelManager : MonoBehaviour{
 				SceneSwitching.SwitchTo((instance.currLevel + 1).ToString());
 			}
 			else{
-				SceneSwitching.SwitchTo("Ending");
+				SoundSys.PlaySound("happy_ending_abridged", false, 2);
+				SceneSwitching.SwitchTo("Victory");
 			}
 		}, 1);
 	}
