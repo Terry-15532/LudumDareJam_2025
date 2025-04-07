@@ -284,7 +284,7 @@ public class Food : MonoBehaviour{
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.CompareTag("ClickableSprite") || other.CompareTag("Obstacle")){
+		if (controlling && (other.CompareTag("ClickableSprite") || other.CompareTag("Obstacle"))){
 			Debug.Log("Collided with " + other.tag);
 			OnReachObstacle();
 			OnCollisionEvent?.Invoke(this);

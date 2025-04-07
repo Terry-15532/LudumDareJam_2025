@@ -34,7 +34,9 @@ public class QTEController : MonoBehaviour{
 
 		ringStarted = true;
 		transform.Find("QTE Parent").gameObject.SetActive(true);
-		ring1.setRadius(500);
+		ring1.GetComponent<RingPulse>().Init();
+        ring2.GetComponent<RingPulse>().Init();
+        ring1.setRadius(500);
 		ring2.setRadius(1000);
 		currentSuccess = 0;
 		ring1.GetComponent<RingPulse>().Activate();
@@ -59,7 +61,9 @@ public class QTEController : MonoBehaviour{
 
 			//Debug.Log("pulse left: " + pulseLeft + "; gracePeriod: " + gracePeriod);
 			if (pulseLeft == 0 && gracePeriodSpacebar <= 0 && gracePeriodBeat <= 0){
-				started = false;
+                ring1.GetComponent<RingPulse>().StopAll();
+                ring2.GetComponent<RingPulse>().StopAll();
+                started = false;
                 ringStarted = false;
                 FindFirstObjectByType<AlertnessBar>().GameOver();
 			}
@@ -113,7 +117,9 @@ public class QTEController : MonoBehaviour{
             QTEVFX.Create(QTERanking.Good);
         }
         if (currentSuccess >= 3){
-			transform.Find("QTE Parent").gameObject.SetActive(false);
+            ring1.GetComponent<RingPulse>().StopAll();
+            ring2.GetComponent<RingPulse>().StopAll();
+            transform.Find("QTE Parent").gameObject.SetActive(false);
             transform.Find("Fade").gameObject.SetActive(false);
             started = false;
 			ringStarted = false;
