@@ -1,7 +1,10 @@
 using System.Collections;
+using System.Drawing;
+
 //using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class StartGame : MonoBehaviour
@@ -16,10 +19,19 @@ public class StartGame : MonoBehaviour
     public GameObject intro;
     public VideoPlayer introPlayer;
     public bool firstTime;
+    private Image img;
+    private int emissionID = Shader.PropertyToID("_Emission");
+    private int colorID = Shader.PropertyToID("_EdgeColor");
 
-    // Start is called before the first frame update
+
     void Start()
     {
+        if (firstTime)
+        {
+            img = GetComponent<Image>();
+            img.material.SetFloat(emissionID, 2.5f);
+            img.material.SetColor(colorID, UnityEngine.Color.magenta);
+        }
 
     }
     // Update is called once per frame
@@ -55,7 +67,7 @@ public class StartGame : MonoBehaviour
         //fade1.Play("FadeOut");
         //yield return new WaitForSeconds(1f);
         fade.SetActive(true);
-
+        SoundSys.PlaySound("eat_short");
         //cutsceneAnimator.GetComponent<AudioSource>().Play();
         // yield return new WaitForSeconds(1f);
         //cutsceneAnimator.Play("FadeIn");
